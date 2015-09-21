@@ -46,8 +46,8 @@ module.exports = function (grunt) {
         tasks: ['newer:coffee:test', 'karma']
       },
       styles: {
-        files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
-        tasks: ['newer:copy:styles', 'autoprefixer']
+        files: ['<%= yeoman.app %>/styles/{,*/}*.{css,less}'],
+        tasks: ['less:dist', 'newer:copy:styles', 'autoprefixer']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -75,7 +75,7 @@ module.exports = function (grunt) {
       },
       livereload: {
         options: {
-          open: true,
+          open: false,
           middleware: function (connect) {
             return [
               connect.static('.tmp'),
@@ -110,7 +110,7 @@ module.exports = function (grunt) {
       },
       dist: {
         options: {
-          open: true,
+          open: false,
           base: '<%= yeoman.dist %>'
         }
       }
@@ -192,7 +192,26 @@ module.exports = function (grunt) {
               coffee: '\'{{filePath}}\''
             }
           }
-          }
+        }
+      }
+    },
+
+    // Compiles Less to CSS and generates necessary files if requested
+    less: {
+      options: {
+        syncImport: true,
+        paths: [
+          '<%= yeoman.app %>/styles'
+        ]
+      },
+      dist: {
+        files: [{
+          expand: true,
+          cwd: '<%= yeoman.app %>/styles',
+          src: 'main.less',
+          dest: '.tmp/styles',
+          ext: '.css'
+        }]
       }
     },
 
@@ -407,6 +426,7 @@ module.exports = function (grunt) {
     concurrent: {
       server: [
         'coffee:dist',
+        'less:dist',
         'copy:styles'
       ],
       test: [
