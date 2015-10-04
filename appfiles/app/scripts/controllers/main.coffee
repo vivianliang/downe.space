@@ -7,11 +7,20 @@
  # # MainCtrl
  # Controller of the appfilesApp
 ###
-angular.module 'appfilesApp'
-  .controller 'MainCtrl', ->
-    @awesomeThings = [
-      'HTML5 Boilerplate'
-      'AngularJS'
-      'Karma'
-    ]
-    return
+app = angular.module 'appfilesApp'
+
+app.controller 'MainCtrl', ($scope, Event) ->
+
+  @awesomeThings = [
+    'HTML5 Boilerplate'
+    'AngularJS'
+    'Karma'
+  ]
+  $scope.getEvent = ->
+    promise = Event.get 1
+    promise.then (events) ->
+      $scope.events = events
+      return
+
+
+  return
