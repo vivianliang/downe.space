@@ -17,7 +17,10 @@ angular
     'ngSanitize',
     'ngTouch'
   ]
-  .config ($routeProvider) ->
+  .config ($routeProvider, $httpProvider) ->
+    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+    $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+
     $routeProvider
       .when '/',
         templateUrl: 'views/main.html'

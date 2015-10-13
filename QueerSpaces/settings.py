@@ -41,6 +41,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'localflavor',
+    'rest_framework',
+    'debug_toolbar',
     'core'
 )
 
@@ -90,3 +92,6 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 STATIC_ROOT = 'staticfiles'
 STATIC_URL  = '/static/'
+
+APP_ROOT = 'appfiles/app'
+APP_URL = '/app'
