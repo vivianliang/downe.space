@@ -22,5 +22,10 @@ app.controller 'MainCtrl', ($scope, Event) ->
       $scope.events = events
       return
 
+  promise = Event.get 1
+  promise.then (events) ->
+    $scope.events = events
+    return
+
 
   return
