@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'localflavor',
     'rest_framework',
     'debug_toolbar',
+    'social.apps.django_app.default',
     'core'
 )
 
@@ -56,10 +57,21 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+
 ROOT_URLCONF = 'QueerSpaces.urls'
 
 WSGI_APPLICATION = 'QueerSpaces.wsgi.application'
 
+# Python Social Auth
+# http://psa.matiasaguirre.net/docs/index.html
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
+
+SOCIAL_AUTH_FACEBOOK_KEY = environ.get('SOCIAL_AUTH_FACEBOOK_KEY')
+SOCIAL_AUTH_FACEBOOK_SECRET = environ.get('SOCIAL_AUTH_FACEBOOK_SECRET')
+
+AUTHENTICATION_BACKENDS = (
+  'social.backends.facebook.FacebookOAuth2',
+)
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
