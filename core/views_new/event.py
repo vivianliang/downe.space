@@ -1,14 +1,8 @@
-from django.http import HttpResponse
-
 from rest_framework.views import APIView
-from simplejson import dumps
 
+from ..utils import render_json
 from ..models import Event
 from ..serializers import EventSerializer
-
-
-def render_json(data, status=200):
-  return HttpResponse(dumps(data), content_type='application/json', status=status)
 
 
 class EventView(APIView):
