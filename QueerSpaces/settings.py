@@ -82,7 +82,7 @@ DATABASES['default'] = dj_database_url.config()
 DATABASES['default']['ENGINE'] = 'djschema'
 DATABASES['default']['CONN_MAX_AGE'] = 60
 DATABASES['default']['OPTIONS'] = {'sslmode': 'allow'}
-print 'Initializing from DATABASE_URL: %s' % DATABASES['default']['NAME']
+print 'DATABASE_URL: %s' % DATABASES['default']['NAME']
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/

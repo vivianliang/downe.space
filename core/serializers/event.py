@@ -20,10 +20,8 @@ class LocationSerializer(serializers.Serializer):
 class EventSerializer(serializers.Serializer):
   name        = serializers.CharField(max_length=512)
   description = serializers.CharField(max_length=2048)
-  start_date  = serializers.DateField()
-  start_time  = serializers.TimeField()
-  end_time    = serializers.TimeField()
-  end_date    = serializers.DateField()
+  start       = serializers.DateTimeField()
+  end         = serializers.DateTimeField()
   frequency   = serializers.IntegerField()
   location    = LocationSerializer()
   contact     = UserSerializer()
