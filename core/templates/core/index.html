@@ -1,9 +1,0 @@
-{% if events %}
-    {% for event in events %}
-    <ul>
-      <li><b><a href="/api/{{ event.id }}/">{{ event.name }}</a></b></li>
-    </ul>
-    {% endfor %}
-{% else %}
-    <p>No events are available.</p>
-{% endif %}
