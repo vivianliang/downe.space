@@ -1,15 +1,14 @@
 from rest_framework.views import APIView
+from ..serializers import UserSerializer
 from ..utils import render_json
 
 
 class AuthView(APIView):
   def get(self, request):
-    print request.user
     user = request.user
-    data = {
-      'username': user.username,
-      'first_name': user.first_name,
-      'last_name': user.last_name,
-      'name': user.get_full_name()
-    }
+    if user.is_authenticated():
+      data = UserSerializer(user).data
+      data['is_authenticated'] = True
+    else:
+      data = {'is_authenticated': False}
     return render_json(data)
