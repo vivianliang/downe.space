@@ -3,7 +3,10 @@
   <p class="lead">
     <img src="images/yeoman.png" alt="I'm Yeoman"><br>
     <a ng-if="!currentUser" href="/login/facebook/">Login with Facebook</a><br>
-    <div ng-if="currentUser">Logged in as {{ currentUser.name }}</div>
+    <div ng-if="currentUser">
+      Logged in as {{ currentUser.name }} -
+      <a href="/api/logout/">Logout</a>
+    </div>
     Find events.
   </p>
   <p>
