@@ -1,6 +1,6 @@
+from django.http import JsonResponse
 from rest_framework.views import APIView
 from ..serializers import UserSerializer
-from ..utils import render_json
 
 
 class AuthView(APIView):
@@ -11,4 +11,4 @@ class AuthView(APIView):
       data['is_authenticated'] = True
     else:
       data = {'is_authenticated': False}
-    return render_json(data)
+    return JsonResponse(data)

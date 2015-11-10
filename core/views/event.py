@@ -1,6 +1,6 @@
+from django.http import JsonResponse
 from rest_framework.views import APIView
 
-from ..utils import render_json
 from ..models import Event
 from ..serializers import EventSerializer
 
@@ -14,4 +14,4 @@ class EventView(APIView):
     except Event.DoesNotExist:
       raise Exception('invalid user id')
 
-    return render_json(EventSerializer(events, many=True).data)
+    return JsonResponse(EventSerializer(events, many=True).data)
