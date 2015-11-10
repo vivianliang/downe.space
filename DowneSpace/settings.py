@@ -10,12 +10,14 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 from os import environ
 from os.path import abspath, dirname, join, normpath
+import sys
 
 import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = normpath(join(dirname(abspath(__file__)), '..'))
 
+TESTING = len(sys.argv) > 1 and sys.argv[1] == 'test'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -109,6 +111,8 @@ SOCIAL_AUTH_LOGIN_REDIRECT_URL = APP_URL
 SOCIAL_AUTH_FACEBOOK_KEY = environ['SOCIAL_AUTH_FACEBOOK_KEY']
 SOCIAL_AUTH_FACEBOOK_SECRET = environ['SOCIAL_AUTH_FACEBOOK_SECRET']
 
-AUTHENTICATION_BACKENDS = (
-  'social.backends.facebook.FacebookOAuth2',
-)
+AUTHENTICATION_BACKENDS = ('social.backends.facebook.FacebookOAuth2',)
+
+if TESTING:
+  # used to mock logging in for unit tests
+  AUTHENTICATION_BACKENDS += ('django.contrib.auth.backends.ModelBackend',)
