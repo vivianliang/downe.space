@@ -498,6 +498,7 @@ module.exports = function (grunt) {
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
+    'less:dist',
     'ngtemplates',
     'concat',
     'ngAnnotate',
