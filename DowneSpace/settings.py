@@ -25,6 +25,9 @@ TESTING = len(sys.argv) > 1 and sys.argv[1] == 'test'
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = environ.get('SECRET_KEY', '5ctu%4a&m@rc86l8j3928x1t8b19f5kjr+-q)l*4y&agi&17iu')
 
+if not TESTING:
+  GOOGLEMAPS_KEY = environ['GOOGLEMAPS_KEY']
+
 # SECURITY WARNING: don't run with debug turned on in production!
 ENVIRONMENT = environ.get('ENVIRONMENT', 'dev')
 if ENVIRONMENT == 'production':
@@ -44,7 +47,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'localflavor',
     'rest_framework',
     'debug_toolbar',
     'social.apps.django_app.default',

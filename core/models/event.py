@@ -5,7 +5,6 @@ from bleachfields import BleachTextField
 from enumfields import EnumIntegerField
 
 from .enums import Frequency
-from .uslocation import UsLocation
 
 
 class Event(models.Model):
@@ -13,6 +12,6 @@ class Event(models.Model):
   description = BleachTextField(max_length=2048, null=True)
   start       = models.DateTimeField()
   end         = models.DateTimeField()
+  location    = BleachTextField(max_length=2048)
   frequency   = EnumIntegerField(Frequency, default=Frequency.none)
-  location    = models.ForeignKey(UsLocation, related_name='+')
   contact     = models.ForeignKey(User, related_name="events", null=True)
