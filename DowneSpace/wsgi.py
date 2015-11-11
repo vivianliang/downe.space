@@ -1,5 +1,5 @@
 """
-WSGI config for QueerSpaces project.
+WSGI config for DowneSpace project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -13,6 +13,6 @@ from django.core.wsgi import get_wsgi_application
 
 from dj_static import Cling
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "QueerSpaces.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "DowneSpace.settings")
 
 application = Cling(get_wsgi_application())

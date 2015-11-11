@@ -1,1 +1,1 @@
-web: gunicorn QueerSpaces.wsgi —log-file
+web: gunicorn DowneSpace.wsgi —log-file

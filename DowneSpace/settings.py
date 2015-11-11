@@ -1,5 +1,5 @@
 """
-Django settings for QueerSpaces project.
+Django settings for DowneSpace project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
@@ -58,9 +58,9 @@ MIDDLEWARE_CLASSES = (
 )
 
 
-ROOT_URLCONF = 'QueerSpaces.urls'
+ROOT_URLCONF = 'DowneSpace.urls'
 
-WSGI_APPLICATION = 'QueerSpaces.wsgi.application'
+WSGI_APPLICATION = 'DowneSpace.wsgi.application'
 
 # Python Social Auth
 # http://psa.matiasaguirre.net/docs/index.html
