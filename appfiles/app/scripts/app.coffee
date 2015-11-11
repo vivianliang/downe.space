@@ -2,14 +2,14 @@
 
 ###*
  # @ngdoc overview
- # @name appfilesApp
+ # @name downespace
  # @description
- # # appfilesApp
+ # # downespace
  #
  # Main module of the application.
 ###
 angular
-  .module 'appfilesApp', [
+  .module 'downespace', [
     'ngAnimate',
     'ngCookies',
     'ngResource',

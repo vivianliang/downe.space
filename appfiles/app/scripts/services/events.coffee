@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('appfilesApp').service 'Event', ($http) ->
+angular.module('downespace').service 'Event', ($http) ->
   service = {}
 
   service.get = (eventId) ->
