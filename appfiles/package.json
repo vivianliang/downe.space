@@ -1,5 +1,5 @@
 {
-  "name": "appfiles",
+  "name": "downespace",
   "private": true,
   "devDependencies": {
     "coffee-script": "*",
