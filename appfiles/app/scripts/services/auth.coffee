@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('appfilesApp').service 'Auth', ($http) ->
+angular.module('downespace').service 'Auth', ($http) ->
   service = {}
 
   service.getUser = ->

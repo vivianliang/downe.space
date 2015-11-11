@@ -2,12 +2,12 @@
 
 ###*
  # @ngdoc function
- # @name appfilesApp.controller:MainCtrl
+ # @name downespace.controller:MainCtrl
  # @description
  # # MainCtrl
- # Controller of the appfilesApp
+ # Controller of the downespace
 ###
-app = angular.module 'appfilesApp'
+app = angular.module 'downespace'
 
 app.controller 'MainCtrl', ($scope, Event) ->
 

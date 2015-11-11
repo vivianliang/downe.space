@@ -1,4 +1,4 @@
 'use strict'
 
-angular.module('appfilesApp').controller 'createEventController', ->
+angular.module('downespace').controller 'createEventController', ->
   return

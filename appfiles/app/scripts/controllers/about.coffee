@@ -2,12 +2,12 @@
 
 ###*
  # @ngdoc function
- # @name appfilesApp.controller:AboutCtrl
+ # @name downespace.controller:AboutCtrl
  # @description
  # # AboutCtrl
- # Controller of the appfilesApp
+ # Controller of the downespace
 ###
-angular.module 'appfilesApp'
+angular.module 'downespace'
   .controller 'AboutCtrl', ->
     @awesomeThings = [
       'HTML5 Boilerplate'
