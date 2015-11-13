@@ -1,1 +1,1 @@
-web: gunicorn DowneSpace.wsgi —log-file
+web: bin/start-nginx gunicorn -c gunicorn.conf DowneSpace.wsgi:application
