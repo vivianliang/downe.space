@@ -1,4 +1,5 @@
 # flake8: noqa
-from .event import EventView
 from .auth import AuthView
+from .event import EventView
+from .events import EventsView
 from .logout import LogoutView

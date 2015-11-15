@@ -9,9 +9,8 @@ class EventView(APIView):
 
   def get(self, request, event_id, *args, **kwargs):
     try:
-      # event = Event.objects.get(id=event_id)
-      events = Event.objects.all()
+      event = Event.objects.get(id=event_id)
     except Event.DoesNotExist:
-      raise Exception('invalid user id')
+      raise Exception('invalid event id')
 
-    return JsonResponse(EventSerializer(events, many=True).data)
+    return JsonResponse(EventSerializer(event).data, safe=False)

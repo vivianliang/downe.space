@@ -16,11 +16,11 @@ app.controller 'MainCtrl', ($scope, Event) ->
     'AngularJS'
     'Karma'
   ]
-  $scope.getEvent = ->
-    promise = Event.get 1
-    promise.then (events) ->
+
+  $scope.getEvents = ->
+    Event.getEvents().then (events) ->
       $scope.events = events
       return
-
+    return
 
   return
