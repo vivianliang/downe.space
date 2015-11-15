@@ -1,6 +1,6 @@
 'use strict'
 
-describe 'Controller: MainCtrl', ->
+xdescribe 'Controller: MainCtrl', ->
 
   # load the controller's module
   beforeEach module 'downespace'
