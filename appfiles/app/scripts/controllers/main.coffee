@@ -9,18 +9,18 @@
 ###
 app = angular.module 'downespace'
 
-app.controller 'MainCtrl', ($scope, Event) ->
+app.controller 'MainCtrl', ($scope, Events) ->
 
   @awesomeThings = [
     'HTML5 Boilerplate'
     'AngularJS'
     'Karma'
   ]
-  $scope.getEvent = ->
-    promise = Event.get 1
+
+  $scope.getEvents = ->
+    promise = Events.get()
     promise.then (events) ->
       $scope.events = events
       return
-
 
   return
