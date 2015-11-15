@@ -38,7 +38,6 @@ describe 'Service: Event', ->
 
     Event.getEvents(page=2)
     httpBackend.expectGET("/api/events/?page=2").respond {}
-    httpBackend.flush()
 
   it 'should get a single event', ->
     eventId = 1

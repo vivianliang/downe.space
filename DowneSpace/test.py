@@ -30,6 +30,10 @@ class TestCase(BaseTestCase):
     user.save()
     return user
 
-  @patch('core.receivers.get_coords')
-  def create_event(self, get_coords_mock):
-    return Event.objects.create(start=timezone.now(), end=timezone.now())
+  def create_event(self, name='', description=''):
+    with patch('core.receivers.get_coords'):
+      return Event.objects.create(
+        name        = name,
+        description = description,
+        start       = timezone.now(),
+        end         = timezone.now())

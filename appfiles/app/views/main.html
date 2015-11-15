@@ -23,9 +23,10 @@
 <div ng-repeat="event in events" class="row marketing">
   <h4>{{ event.name }}</h4>
   <p>
-    {{ event.description }}<br>
-    {{ event.location.address_1 }}, {{ event.location.city }}<br>
-    {{ event.start }}<br>
-    {{ event.end }}<br>
+    Description: {{ event.description }}<br>
+    Location: {{ event.location }}<br>
+    Start: {{ event.start }}<br>
+    End: {{ event.end }}<br>
+    Contact {{ event.contact.first_name }} {{ event.contact.last_name }} <br>
   </p>
 </div>
