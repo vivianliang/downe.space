@@ -15,22 +15,32 @@ describe 'Service: Event', ->
 
     httpBackend.expectGET("/api/auth/").respond {}
 
-  it 'should get all events', ->
-    expectedResponse = [
+  it 'should get paged events', ->
+    events = [
       {id: 1, name: 'name1', description: 'description1'},
       {id: 2, name: 'name2', description: 'description2'}
     ]
+    expectedResponse = {
+      page       : 1
+      total_pages: 2
+      events     : events
+      more       : true
+    }
 
     result = null
     Event.getEvents().then (data) ->
       result = data
       return
 
-    httpBackend.expectGET("/api/events/").respond expectedResponse
+    httpBackend.expectGET("/api/events/?page=1").respond expectedResponse
     httpBackend.flush()
     expect(result).toEqual expectedResponse
 
-  it 'should get a single events', ->
+    Event.getEvents(page=2)
+    httpBackend.expectGET("/api/events/?page=2").respond {}
+    httpBackend.flush()
+
+  it 'should get a single event', ->
     eventId = 1
     expectedResponse =
       id         : eventId

@@ -11,15 +11,16 @@ app = angular.module 'downespace'
 
 app.controller 'MainCtrl', ($scope, Event) ->
 
-  @awesomeThings = [
-    'HTML5 Boilerplate'
-    'AngularJS'
-    'Karma'
-  ]
+  $scope.events   = []
+  $scope.nextPage = 1
+  $scope.more     = true
 
   $scope.getEvents = ->
-    Event.getEvents().then (events) ->
-      $scope.events = events
+    Event.getEvents($scope.nextPage).then (eventData) ->
+      $scope.events.push eventData.events...
+      $scope.more = eventData.more
+      if $scope.more
+        $scope.nextPage = eventData.page + 1
       return
     return
 
