@@ -12,6 +12,7 @@
   <p>
     <a
       class="btn btn-lg btn-success"
+      ng-class="{'disabled': !more}"
       ng-click="getEvents()">
       Get Events!
       <span class="glyphicon glyphicon-ok"></span>
@@ -28,4 +29,3 @@
     {{ event.end }}<br>
   </p>
 </div>
-

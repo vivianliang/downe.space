@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, EmptyPage
 from django.http import JsonResponse
 from rest_framework.views import APIView
 
@@ -8,5 +9,20 @@ from ..serializers import EventSerializer
 class EventsView(APIView):
 
   def get(self, request, *args, **kwargs):
-    events = Event.objects.all()
-    return JsonResponse(EventSerializer(events, many=True).data, safe=False)
+    all_events = Event.objects.all()
+    # 12 events per page
+    paginator = Paginator(all_events, 12)
+
+    page = int(request.GET.get('page', 1))
+    try:
+      events = paginator.page(page)
+    except EmptyPage:
+      events = paginator.page(paginator.num_pages)
+
+    data = {
+      'events'     : EventSerializer(events, many=True).data,
+      'total_pages': paginator.num_pages,
+      'page'       : page,
+      'more'       : page < paginator.num_pages
+    }
+    return JsonResponse(data)
