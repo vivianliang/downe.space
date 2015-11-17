@@ -138,6 +138,14 @@ module.exports = function (grunt) {
       }
     },
 
+    // Make sure Coffeescript is clean
+    coffeelint: {
+      options: {
+        configFile: 'coffeelint.json'
+      },
+      app: ['app/**/*.coffee']
+    },
+
     // Empties folders to start fresh
     clean: {
       dist: {

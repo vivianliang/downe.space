@@ -3,7 +3,6 @@ from django.conf.urls import include, patterns, url
 from django.contrib import admin
 from django.views.generic.base import RedirectView
 
-
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'DowneSpace.views.home', name='home'),

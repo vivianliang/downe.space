@@ -1,4 +1,4 @@
-from django.core.paginator import Paginator, EmptyPage
+from django.core.paginator import EmptyPage, Paginator
 from django.http import JsonResponse
 from rest_framework.views import APIView
 

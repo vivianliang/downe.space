@@ -8,9 +8,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
+import sys
 from os import environ
 from os.path import abspath, dirname, join, normpath
-import sys
 
 import dj_database_url
 

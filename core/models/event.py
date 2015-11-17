@@ -1,7 +1,6 @@
+from bleachfields import BleachTextField
 from django.contrib.auth.models import User
 from django.db import models
-
-from bleachfields import BleachTextField
 from enumfields import EnumIntegerField
 
 from .enums import Frequency
