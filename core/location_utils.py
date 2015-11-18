@@ -1,5 +1,5 @@
-from django.conf import settings
 import googlemaps
+from django.conf import settings
 
 
 def get_coords(address):

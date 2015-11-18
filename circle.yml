@@ -1,0 +1,22 @@
+machine:
+  environment:
+    SOCIAL_AUTH_FACEBOOK_KEY: ''
+    SOCIAL_AUTH_FACEBOOK_SECRET: ''
+
+dependencies:
+  override:
+    - "cd appfiles; npm install"
+    - "cd appfiles; bower install"
+    - "pip install -r requirements.txt"
+
+  cache_directories:
+    - appfiles/node_modules
+    - appfiles/bower_components
+
+test:
+  override:
+    - "cd appfiles; grunt coffeelint"
+    - "cd appfiles; grunt test"
+    - "flake8"
+    - "isort -c -rc ."
+    - "./manage.py test"

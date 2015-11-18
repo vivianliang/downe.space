@@ -1,6 +1,5 @@
-from django.db import models
-
 from bleachfields import BleachTextField
+from django.db import models
 
 from .event import Event
 

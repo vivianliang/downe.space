@@ -1,5 +1,6 @@
 from django.conf.urls import url
-from .views import EventView, EventsView, AuthView, LogoutView
+
+from .views import AuthView, EventsView, EventView, LogoutView
 
 urlpatterns = [
   url(r'^auth/$', AuthView.as_view()),

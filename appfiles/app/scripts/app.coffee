@@ -20,6 +20,8 @@ angular
   .run ($rootScope, Auth) ->
     Auth.getUser().then (data) ->
       $rootScope.currentUser = data
+      return
+    return
   .config ($routeProvider, $httpProvider) ->
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken'
     $httpProvider.defaults.xsrfCookieName = 'csrftoken'
@@ -40,3 +42,4 @@ angular
       .otherwise
         redirectTo: '/'
 
+    return

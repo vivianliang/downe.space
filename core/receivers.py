@@ -1,7 +1,8 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+
 from .location_utils import get_coords
-from .models import Event, Coords
+from .models import Coords, Event
 
 
 @receiver(post_save, sender=Event, weak=False)

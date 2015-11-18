@@ -1,7 +1,8 @@
 from rest_framework import serializers
+
+from ..models import Event
 from .coords import CoordsSerializer
 from .user import UserSerializer
-from ..models import Event
 
 
 class EventSerializer(serializers.Serializer):
