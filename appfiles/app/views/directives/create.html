@@ -31,15 +31,4 @@ Create Event
   <input type="text" class="form-control" ng-model="create.newEvent.location">
 </div>
 
-<label>Contact</label>
-
-<div class="form-group">
-  <label>First Name</label>
-  <input type="text" class="form-control" ng-model="create.newEvent.contact.first_name">
-</div>
-<div class="form-group">
-  <label>Last Name</label>
-  <input type="text" class="form-control"ng-model="create.newEvent.contact.last_name">
-</div>
-
 <button type="submit" class="btn btn-default" ng-click="create.createEvent()" ng-disabled="create.newEvent.name === undefined">Create Event</button>

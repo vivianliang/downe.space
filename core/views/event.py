@@ -1,10 +1,9 @@
-from datetime import datetime
-
 from django import forms
+from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django.db import transaction
 from django.forms import Form
 from django.http import JsonResponse
-from django.utils import timezone
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -15,11 +14,11 @@ from ..serializers import EventSerializer
 class EventForm(Form):
   name        = forms.CharField()
   description = forms.CharField()  # will return '' if empty
-  start       = forms.DateField()
-  end         = forms.DateField()
+  start       = forms.DateTimeField()
+  end         = forms.DateTimeField()
   frequency   = forms.IntegerField()
   location    = forms.CharField()
-  contact     = forms.Field()
+  contact     = forms.ModelChoiceField(queryset=User.objects)
 
 
 class EventView(APIView):
@@ -35,24 +34,14 @@ class EventView(APIView):
 
   def post(self, request, *args, **kwargs):
     '''Create a new event.'''
-    time_format = '%Y-%m-%dT%H:%M:%S.%fZ'
+    data = request.data
+    data['contact'] = request.user.id
+    event_form = EventForm(data)
 
-    now = timezone.now()
-
-    start = request.data.get('start')
-    start = datetime.strptime(start, time_format) if start else now
-
-    end = request.data.get('end')
-    end = datetime.strptime(end, time_format) if end else now
+    if not event_form.is_valid():
+      raise ValidationError(event_form.errors)
 
     with transaction.atomic():
-      event = Event.objects.create(
-        name        = request.data.get('name') or '',
-        description = request.data.get('description' or ''),
-        start       = start or now,
-        end         = end or now,
-        frequency   = request.data.get('frequency') or 0,
-        location    = request.data.get('location') or '',
-        contact_id  = request.user.id)
+      event = Event.objects.create(**event_form.cleaned_data)
 
     return Response(EventSerializer(event).data)

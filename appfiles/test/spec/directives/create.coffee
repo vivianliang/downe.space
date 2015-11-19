@@ -24,7 +24,6 @@ describe 'Directive: create', ->
       end        : '2015-01-02'
       frequency  : 1
       location   : '123 loop ave. palo alto, ca'
-      contact    : {first_name: 'barry', last_name: 'allen'}
 
     spyOn(this.Event, 'create').and.returnValue this.$q.when this.controller.newEvent
 

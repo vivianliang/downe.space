@@ -11,6 +11,7 @@ class TestCase(BaseTestCase):
 
   def setUp(self):
     super(TestCase, self).setUp()
+    self.now = timezone.now()
     self.user = self.create_user()
     self.client.login(username=self.user.username, password='foo')
 
@@ -35,5 +36,5 @@ class TestCase(BaseTestCase):
       return Event.objects.create(
         name        = name,
         description = description,
-        start       = timezone.now(),
-        end         = timezone.now())
+        start       = self.now,
+        end         = self.now)
