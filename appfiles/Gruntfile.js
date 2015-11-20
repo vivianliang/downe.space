@@ -463,6 +463,10 @@ module.exports = function (grunt) {
       unit: {
         configFile: 'test/karma.conf.coffee',
         singleRun: true
+      },
+      circle: {
+        configFile: 'test/karma.circle.conf.coffee',
+        singleRun: true
       }
     }
   });
@@ -494,16 +498,28 @@ module.exports = function (grunt) {
   grunt.registerTask('test', [
     'clean:server',
     'wiredep',
+    'coffeelint',
     'concurrent:test',
     'autoprefixer',
     'connect:test',
-    'karma'
+    'karma:unit'
+  ]);
+
+  grunt.registerTask('circletest', [
+    'clean:server',
+    'wiredep',
+    'coffeelint',
+    'concurrent:test',
+    'autoprefixer',
+    'connect:test',
+    'karma:circle'
   ]);
 
   grunt.registerTask('build', [
     'clean:dist',
     'wiredep',
     'useminPrepare',
+    'coffeelint',
     'concurrent:dist',
     'autoprefixer',
     'less:dist',

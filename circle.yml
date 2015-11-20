@@ -15,8 +15,7 @@ dependencies:
 
 test:
   override:
-    - "cd appfiles; grunt coffeelint"
-    - "cd appfiles; grunt test"
+    - "cd appfiles; grunt circletest"
     - "flake8"
     - "isort -c -rc ."
     - "./manage.py test"
