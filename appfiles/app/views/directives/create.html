@@ -1,0 +1,34 @@
+Create Event
+<br>
+
+<div class="form-group">
+  <label>Event Name</label>
+  <input type="text" class="form-control" ng-model="create.newEvent.name" placeholder="Name">
+</div>
+
+<div class="form-group">
+  <label>Description</label>
+  <input type="text" class="form-control" ng-model="create.newEvent.description" placeholder="Description">
+</div>
+
+<div class="form-group">
+  <label>Start Date</label>
+  <input type="datetime-local" class="form-control" ng-model="create.newEvent.start">
+</div>
+
+<div class="form-group">
+  <label>End Date</label>
+  <input type="datetime-local" class="form-control" ng-model="create.newEvent.end">
+</div>
+
+<div class="form-group">
+  <label>Frequency</label>
+  <input type="number" class="form-control" ng-model="create.newEvent.frequency">
+</div>
+
+<div class="form-group">
+  <label>Location</label>
+  <input type="text" class="form-control" ng-model="create.newEvent.location">
+</div>
+
+<button type="submit" class="btn btn-default" ng-click="create.createEvent()" ng-disabled="create.newEvent.name === undefined">Create Event</button>

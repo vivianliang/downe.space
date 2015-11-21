@@ -36,9 +36,7 @@ angular
         controller: 'AboutCtrl'
         controllerAs: 'about'
       .when '/create',
-        templateUrl: 'views/create.html'
-        controller: 'createEventController'
-        controllerAs: 'createEvent'
+        template: '<create></create>'
       .otherwise
         redirectTo: '/'
 

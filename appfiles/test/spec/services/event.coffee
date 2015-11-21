@@ -37,7 +37,7 @@ describe 'Service: Event', ->
     expect(result).toEqual expectedResponse
 
     Event.getEvents(page=2)
-    httpBackend.expectGET("/api/events/?page=2").respond {}
+    httpBackend.expectGET("/api/events/?page=2").respond {events: []}
     httpBackend.flush()
 
   it 'should get a single event', ->
