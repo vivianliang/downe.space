@@ -1,0 +1,39 @@
+.navbar-default .navbar-brand {
+  color: #83abb9;            // light-blue
+
+  &:hover {
+    color: darken(#83abb9, 10%); // light-blue
+  }
+
+  &:active, &:focus {
+    color: #83abb9;          // light-blue
+  }
+}
+
+.topbar {
+  background-color: #184060; // dark-blue
+  border-color    : #184060; // dark-blue
+  border-radius   : 0;
+  // min-width       : 1000px;
+}
+
+.btn-default {
+  color: #f0e5c9;            // tan
+  background-color: #f98200; // orange
+  border-color: #f98200;     // orange
+
+  &:hover, &.active, &:focus:active {
+    background-color: darken(#f98200, 10%); // orange
+    border-color: darken(#f98200, 10%);     // orange
+    color: darken(#f0e5c9, 10%);            // tan
+  }
+}
+
+.btn-submit-event {
+  float : right;
+  margin: 8px 0;
+}
+
+.btn-default:focus {
+  .btn-default;
+}
