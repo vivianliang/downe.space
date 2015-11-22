@@ -11,10 +11,18 @@ Create Event
   <input type="text" class="form-control" ng-model="create.newEvent.description" placeholder="Description">
 </div>
 
+<form name="myForm">
 <div class="form-group">
   <label>Start Date</label>
-  <input type="datetime-local" class="form-control" ng-model="create.newEvent.start">
+  <input name="input" type="datetime-local" class="form-control" ng-model="create.newEvent.start">
+  <a href="" ng-click="create.test()">asdfasdf</a>
+  <tt>value = {{create.newEvent.start | date: "yyyy-MM-ddTHH:mm:ss"}}</tt><br/>
+  <tt>myForm.input.$valid = {{myForm.input.$valid}}</tt><br/>
+  <tt>myForm.input.$error = {{myForm.input.$error}}</tt><br/>
+  <tt>myForm.$valid = {{myForm.$valid}}</tt><br/>
+  <tt>myForm.$error.required = {{!!myForm.$error.required}}</tt><br/>
 </div>
+</form>
 
 <div class="form-group">
   <label>End Date</label>
