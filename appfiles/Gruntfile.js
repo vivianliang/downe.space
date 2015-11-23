@@ -45,7 +45,7 @@ module.exports = function (grunt) {
       },
       coffeeTest: {
         files: ['test/spec/{,*/}*.{coffee,litcoffee,coffee.md}'],
-        tasks: ['newer:coffee:test', 'karma']
+        tasks: ['newer:coffee:test', 'karma:unit']
       },
       styles: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.{css,less}'],
@@ -59,7 +59,7 @@ module.exports = function (grunt) {
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
-          '<%= yeoman.app %>/{,*/}*.html',
+          '<%= yeoman.app %>/views/{,*/}*.html',
           '.tmp/styles/{,*/}*.css',
           '.tmp/scripts/{,*/}*.js',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
@@ -460,13 +460,14 @@ module.exports = function (grunt) {
 
     // Test settings
     karma: {
-      unit: {
-        configFile: 'test/karma.conf.coffee',
+      options: {
         singleRun: true
       },
+      unit: {
+        configFile: 'test/karma.conf.coffee'
+      },
       circle: {
-        configFile: 'test/karma.circle.conf.coffee',
-        singleRun: true
+        configFile: 'test/karma.circle.conf.coffee'
       }
     }
   });
