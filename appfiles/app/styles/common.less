@@ -4,6 +4,7 @@
 @light-blue-dark: darken(@light-blue, 10%);
 
 @dark-blue: #184060;
+@dark-blue-dark: darken(@dark-blue, 10%);
 
 @tan: #f0e5c9;
 @tan-dark: darken(@tan, 10%);
@@ -27,7 +28,7 @@
   background-color: @orange;
   border-color    : @orange;
 
-  &:hover, &:active, &:focus:active {
+  &:hover, &:active, &:focus:active, &.selected {
     background-color: @orange-dark;
     border-color    : @orange-dark;
     color           : @tan-dark;
@@ -43,4 +44,20 @@
 
 .btn-default:focus {
   .btn-default;
+}
+
+.btn-primary {
+  color           : @light-blue;
+  background-color: @dark-blue;
+  border-color    : @dark-blue;
+
+  &:hover, &:active, &:focus:active, &.selected {
+    background-color: @dark-blue-dark;
+    border-color    : @dark-blue-dark;
+    color           : @light-blue-dark;
+  }
+}
+
+.push-right {
+  margin-right: 10px;
 }

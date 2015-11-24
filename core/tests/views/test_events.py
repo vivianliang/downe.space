@@ -18,7 +18,7 @@ class EventsViewTest(TestCase):
 
     self.assertEqual(data['page'], 1)
     self.assertEqual(data['total_pages'], 2)
-    self.assertEqual(len(data['events']), 12)
+    self.assertEqual(len(data['events']), 9)
     self.assertEqual(data['more'], True)
 
     response = self.client.get(self.url, {'page': 2})
@@ -26,5 +26,5 @@ class EventsViewTest(TestCase):
 
     self.assertEqual(data['page'], 2)
     self.assertEqual(data['total_pages'], 2)
-    self.assertEqual(len(data['events']), 3)
+    self.assertEqual(len(data['events']), 6)
     self.assertEqual(data['more'], False)

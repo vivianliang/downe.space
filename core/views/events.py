@@ -10,8 +10,8 @@ class EventsView(APIView):
 
   def get(self, request, *args, **kwargs):
     all_events = Event.objects.all()
-    # 12 events per page
-    paginator = Paginator(all_events, 12)
+    # 9 events per page
+    paginator = Paginator(all_events, 9)
 
     page = int(request.GET.get('page', 1))
     try:

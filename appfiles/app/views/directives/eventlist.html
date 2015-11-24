@@ -1,0 +1,50 @@
+<div class="container col-xs-12" style="margin-bottom: 20px;">
+  <div class="well well-sm">
+    <div class="btn-group">
+      <span
+        ng-click="eventList.gridView = false"
+        class="btn btn-default btn-sm"
+        ng-class="{ 'selected' : eventList.gridView === false }">
+        <span class="glyphicon glyphicon-th-list"></span>List
+      </span>
+      <span
+        ng-click="eventList.gridView = true"
+        class="btn btn-default btn-sm"
+        ng-class="{ 'selected': eventList.gridView === true }">
+        <span class="glyphicon glyphicon-th"></span>Grid
+      </span>
+    </div>
+  </div>
+
+  <div id="products" class="row" ng-class="{'list-group': !eventList.gridView}">
+    <div
+      class="item col-xs-4 col-lg-4"
+      ng-class="{ 'list-group-item': !eventList.gridView }"
+      ng-repeat="event in eventList.events">
+      <div class="thumbnail">
+        <img class="group list-group-image" src="http://placehold.it/400x250/83abb9/fff" alt="" />
+        <div class="caption">
+          <h4 class="group inner list-group-item-heading">{{ event.name }}</h4>
+          <div class="group inner list-group-item-text">{{ event.description }}</div>
+          <div class="group inner list-group-item-text">{{ event.location }}</div>
+          <div class="group inner list-group-item-text">{{ event.contact.name }}</div>
+          <div ng-if="!eventList.gridView" class="pull right">
+            <a class="btn btn-primary" ng-click="eventList.saveEvent(event.id)">Save Event</a>
+          </div>
+          <div class="row" ng-if="eventList.gridView">
+            <div class="col-xs-12 text-right">
+              <a class="btn btn-primary" ng-click="eventList.saveEvent(event.id)">Save Event</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a
+    class="pull-right push-right"
+    ng-if="eventList.more"
+    ng-click="eventList.getEvents()">More
+  </a>
+
+</div>

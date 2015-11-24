@@ -1,32 +1,18 @@
-<div class="jumbotron">
-  <h1>downe.space</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    <a ng-if="!currentUser" href="/login/facebook/">Login with Facebook</a><br>
-    <div ng-if="currentUser">
+<!-- TODO: should probably move into top bar so this is on every page.
+     Then change app.coffee to just use <event-list> directive at /. -->
+<div style="float: right; margin-bottom: 20px;">
+  <div class="row">
+
+    <div class="text-right" ng-if="!currentUser">
+      <a href="/login/facebook/">Login with Facebook</a>
+    </div>
+
+    <div class="text-right" ng-if="currentUser">
       Logged in as {{ currentUser.name }} -
       <a href="/api/logout/">Logout</a>
     </div>
-    Find events.
-  </p>
-  <p>
-    <a
-      class="btn btn-lg btn-success"
-      ng-class="{'disabled': !more}"
-      ng-click="getEvents()">
-      Get Events!
-      <span class="glyphicon glyphicon-ok"></span>
-    </a>
-  </p>
+
+  </div>
 </div>
 
-<div ng-repeat="event in events" class="row marketing">
-  <h4>{{ event.name }}</h4>
-  <p>
-    Description: {{ event.description }}<br>
-    Location: {{ event.location }}<br>
-    Start: {{ event.start }}<br>
-    End: {{ event.end }}<br>
-    Contact {{ event.contact.name }}<br>
-  </p>
-</div>
+<event-list></event-list>
