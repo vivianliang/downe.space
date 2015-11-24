@@ -10,9 +10,15 @@ angular.module('downespace').directive 'create', ->
 
 angular.module('downespace').controller 'createController', ($rootScope, Event) ->
 
+  resetEvent = =>
+    this.newEvent = {}
+    return
+
   this.createEvent = =>
-    Event.create(this.newEvent).then (createdEvent) =>
-      this.newEvent = {}
+    Event.create(this.newEvent).then (createdEvent) ->
+      resetEvent()
       return
     return
+
+  resetEvent()
   return

@@ -9,8 +9,7 @@ angular.module('downespace').service 'Event', ($http) ->
       newEvent.start = moment(newEvent.start).format(dateFormat)
     if newEvent.end?
       newEvent.end = moment(newEvent.end).format(dateFormat)
-    response = $http.post '/api/event/', newEvent
-    return response.then ({data}) -> data
+    return $http.post('/api/event/', newEvent).then ({data}) -> data
 
   service.getEvents = (page=1) ->
     params = page: page
