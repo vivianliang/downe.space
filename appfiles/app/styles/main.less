@@ -1,4 +1,6 @@
-@import 'test';
+@import 'common';
+@import './views/footer';
+@import './views/topbar';
 
 .browsehappy {
   margin: 0.2em 0;
@@ -7,40 +9,20 @@
   padding: 0.2em 0;
 }
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body {
   padding: 0;
+  margin-bottom: @footer-height;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
+.marketing {
   padding-left: 15px;
   padding-right: 15px;
-}
-
-/* Custom page header */
-.header {
-  border-bottom: 1px solid #e5e5e5;
-  margin-bottom: 10px;
-}
-/* Make the masthead heading the same height as the navigation */
-.header h3 {
-  margin-top: 0;
-  margin-bottom: 0;
-  line-height: 40px;
-  padding-bottom: 19px;
-}
-
-/* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
-}
-
-.container-narrow > hr {
-  margin: 30px 0;
 }
 
 /* Main marketing message and sign up button */
@@ -64,7 +46,7 @@ body {
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
-    max-width: 730px;
+    max-width: 940px;
   }
 
   /* Remove the padding we set earlier */
