@@ -1,4 +1,4 @@
-@import 'test';
+@import 'common';
 @import './views/footer';
 @import './views/topbar';
 
@@ -16,17 +16,13 @@ html {
 
 body {
   padding: 0;
-  margin-bottom: 60px; // footer height
+  margin-bottom: @footer-height;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .marketing {
   padding-left: 15px;
   padding-right: 15px;
-}
-
-.container-narrow > hr {
-  margin: 30px 0;
 }
 
 /* Main marketing message and sign up button */

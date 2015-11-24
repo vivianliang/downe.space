@@ -11,8 +11,8 @@
       <button type="submit" class="btn btn-default">Search</button>
     </form>
     <a
-      class="btn btn-md btn-default btn-submit-event"
-      ng-class="{'disabled': user === null}"
+      class="btn btn-md btn-default btn-submit"
+      ng-disabled="!currentUser"
       ng-href="#/create">
       Submit Event
     </a>

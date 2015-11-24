@@ -1,19 +1,19 @@
 .footer {
+  padding-top     : 20px;
   position        : absolute;
-  padding-top:20px;
-  width           : 100%;
-  height          : 60px;
   bottom          : 0;
-  background-color: #184060; // dark-blue
-  border-top      : 1px solid #e5e5e5;
+  height          : @footer-height;
+  width           : 100%;
+  background-color: @dark-blue;
   text-align      : center;
 
   a {
-    color: #83abb9;            // light-blue
+    color : @light-blue;
     padding-right: 10px;
+
     &:hover {
       text-decoration: none;
-      color: darken(#83abb9, 10%); // light-blue
+      color: @light-blue-dark;
     }
   }
 }

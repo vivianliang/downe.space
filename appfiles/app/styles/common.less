@@ -1,0 +1,45 @@
+// brand colors
+
+@light-blue: #83abb9;
+@light-blue-dark: darken(@light-blue, 10%);
+
+@dark-blue: #184060;
+
+@tan: #f0e5c9;
+@tan-dark: darken(@tan, 10%);
+
+@orange: #f98200;
+@orange-light: lighten(@orange, 10%);
+@orange-dark: darken(@orange, 10%);
+
+@gray: #bbbbbb;
+@dark-gray: #999999;
+
+// common
+
+@footer-height: 60px;
+
+// bootstrap overrides
+
+.btn-default {
+  color           : @tan;
+  background-color: @orange;
+  border-color    : @orange;
+
+  &:hover, &:active, &:focus:active {
+    background-color: @orange-dark;
+    border-color    : @orange-dark;
+    color           : @tan-dark;
+  }
+}
+
+.btn-default.disabled, .btn-default[disabled] {
+  pointer-events  : none;
+  background-color: @gray;
+  border-color    : @gray;
+  color           : @dark-gray;
+}
+
+.btn-default:focus {
+  .btn-default;
+}
