@@ -14,8 +14,10 @@ angular.module('downespace').directive 'input', ->
       element.datetimepicker {useCurrent: true, sideBySide: true}
 
       # when the internal date object is set, set the ng-model as well
-      element.on 'dp.change', ->
-        ngModel.$setViewValue element.data('DateTimePicker').date()
+      element.on 'dp.change', (event) ->
+        if event.date
+          # create a new moment without timezone information to convert to users local time
+          ngModel.$setViewValue moment(event.date.format('YYYY-MM-DD HH:mm'))
         return
 
       # when the ng-model value is reset, we need to reset the interal date object as well

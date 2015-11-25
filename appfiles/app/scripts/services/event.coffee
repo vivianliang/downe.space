@@ -1,14 +1,14 @@
 'use strict'
 
-angular.module('downespace').service 'Event', ($http) ->
+angular.module('downespace').service 'Event', ($http, Date) ->
   service = {}
 
-  service.create = (newEvent) ->
-    dateFormat = 'YYYY-MM-DD HH:mm:ss'
-    if newEvent.start?
-      newEvent.start = moment(newEvent.start).format(dateFormat)
-    if newEvent.end?
-      newEvent.end = moment(newEvent.end).format(dateFormat)
+  service.create = (event) ->
+    newEvent = angular.copy event
+    if newEvent.start
+      newEvent.start = Date.toTimestamp newEvent.start
+    if newEvent.end
+      newEvent.end = Date.toTimestamp newEvent.end
     return $http.post('/api/event/', newEvent).then ({data}) -> data
 
   service.getEvents = (page=1) ->
