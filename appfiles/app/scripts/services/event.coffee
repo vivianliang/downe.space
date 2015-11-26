@@ -15,10 +15,10 @@ angular.module('downespace').service 'Event', ($http, Date) ->
     params = page: page
     return $http.get('/api/events/', params: params).then ({data}) ->
       for e in data.events
-        if e.start?
-          e.start = moment(e.start).format()
-        if e.end?
-          e.end = moment(e.end).format()
+        if e.start
+          e.start = Date.toDateString e.start
+        if e.end
+          e.end = Date.toDateString e.end
       return data
 
   service.getEvent = (eventId) ->

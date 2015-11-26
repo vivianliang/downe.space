@@ -13,7 +13,6 @@ class TimestampField(DateTimeField):
 
     try:
       value = datetime.fromtimestamp(int(value))
-      print value
     except (TypeError, ValueError):
       raise ValidationError(self.error_messages['invalid'], code='invalid')
 

@@ -28,5 +28,5 @@ class EventViewTest(TestCase):
     self.assertEqual(result['name'], 'event')
     self.assertEqual(result['description'], 'test description')
     self.assertEqual(result['location'], '123 loop ave palo alto ca')
-    self.assertEqual(result['start'], '2015-01-01T00:00:00Z')
-    self.assertEqual(result['end'], '2015-01-01T00:00:00Z')
+    self.assertEqual(result['start'], unix_timestamp)
+    self.assertEqual(result['end'], unix_timestamp)
