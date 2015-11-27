@@ -28,14 +28,6 @@
           <div class="group inner list-group-item-text">{{ event.description }}</div>
           <div class="group inner list-group-item-text">{{ event.location }}</div>
           <div class="group inner list-group-item-text">{{ event.contact.name }}</div>
-          <div ng-if="!eventList.gridView" class="pull right">
-            <a class="btn btn-primary" ng-click="eventList.saveEvent(event.id)">Save Event</a>
-          </div>
-          <div class="row" ng-if="eventList.gridView">
-            <div class="col-xs-12 text-right">
-              <a class="btn btn-primary" ng-click="eventList.saveEvent(event.id)">Save Event</a>
-            </div>
-          </div>
         </div>
       </div>
     </div>

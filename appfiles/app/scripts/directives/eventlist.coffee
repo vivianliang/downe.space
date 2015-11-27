@@ -26,7 +26,4 @@ angular.module('downespace').controller 'eventListController', (Event) ->
 
   this.getEvents()
 
-  this.saveEvent = (eventId) ->
-    return
-
   return
