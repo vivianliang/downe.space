@@ -9,6 +9,9 @@ angular.module('downespace').service 'Event', ($http, Date) ->
     event.end   = Date.toDateString event.end
     return event
 
+  service.processEvents = (rawEvents) ->
+    return _.map rawEvents, service.processEvent
+
   service.create = (event) ->
     newEvent = angular.copy event
     # TODO: remove these if-checks once frontend form validation is added
@@ -21,7 +24,7 @@ angular.module('downespace').service 'Event', ($http, Date) ->
   service.getEvents = (page=1) ->
     params = page: page
     return $http.get('/api/events/', params: params).then ({data}) ->
-      data.events = _.map(data.events, service.processEvent)
+      data.events = service.processEvents data.events
       return data
 
   service.getEvent = (eventId) ->

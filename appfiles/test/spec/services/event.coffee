@@ -38,7 +38,7 @@ describe 'Service: Event', ->
       more       : true
 
     transformedResponse = angular.copy expectedResponse
-    transformedResponse.events = _.map transformedResponse.events, this.Event.processEvent
+    transformedResponse.events = this.Event.processEvents transformedResponse.events
 
     result = null
     this.Event.getEvents().then (data) ->

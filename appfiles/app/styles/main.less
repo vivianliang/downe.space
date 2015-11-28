@@ -1,4 +1,5 @@
 @import 'common';
+@import './views/eventlist';
 @import './views/footer';
 @import './views/topbar';
 
@@ -17,51 +18,21 @@ html {
 body {
   padding: 0;
   margin-bottom: @footer-height;
-}
+  background-color: @background-gray;
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.marketing {
-  padding-left: 15px;
-  padding-right: 15px;
-}
+  a:hover {
+    text-decoration: none;
+    cursor: pointer;
+  }
 
-/* Main marketing message and sign up button */
-.jumbotron {
-  text-align: center;
-  border-bottom: 1px solid #e5e5e5;
-}
-.jumbotron .btn {
-  font-size: 21px;
-  padding: 14px 24px;
-}
-
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0;
-}
-.marketing p + h4 {
-  margin-top: 28px;
+  a:active {
+    text-decoration: none;
+  }
 }
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
     max-width: 940px;
-  }
-
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
   }
 }
