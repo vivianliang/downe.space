@@ -1,0 +1,22 @@
+.filter-btn {
+  color: @link-blue;
+  cursor: pointer;
+
+  &:hover, &:active, &:focus {
+    color: @dark-blue;
+    cursor: pointer;
+  }
+}
+
+.filter-btn-expanded {
+  color: @dark-blue;
+}
+
+.filter-expanded {
+  margin-bottom: 20px;
+  transition: margin-top 400ms ease, visibility 0s ease 0s;
+
+  .row {
+    margin-bottom: 10px;
+  }
+}

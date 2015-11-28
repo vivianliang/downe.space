@@ -1,5 +1,6 @@
 @import 'common';
 @import './views/eventlist';
+@import './views/filterevents';
 @import './views/footer';
 @import './views/topbar';
 
@@ -20,13 +21,19 @@ body {
   margin-bottom: @footer-height;
   background-color: @background-gray;
 
+  a {
+    color: @link-blue;
+  }
+
   a:hover {
     text-decoration: none;
     cursor: pointer;
+    color: @dark-blue;
   }
 
-  a:active {
+  a:active, a:focus {
     text-decoration: none;
+    color: @dark-blue;
   }
 }
 
