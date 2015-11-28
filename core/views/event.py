@@ -7,6 +7,7 @@ from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from ..forms import TimestampField
 from ..models import Event
 from ..serializers import EventSerializer
 
@@ -14,8 +15,8 @@ from ..serializers import EventSerializer
 class EventForm(Form):
   name        = forms.CharField()
   description = forms.CharField()  # will return '' if empty
-  start       = forms.DateTimeField()
-  end         = forms.DateTimeField()
+  start       = TimestampField()
+  end         = TimestampField()
   frequency   = forms.IntegerField()
   location    = forms.CharField()
   contact     = forms.ModelChoiceField(queryset=User.objects)
