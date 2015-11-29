@@ -1,0 +1,23 @@
+<div ng-click="filterEvents.toggle()">
+  <span class="filter-btn" ng-class="{ 'filter-btn-expanded': filterEvents.expanded }">
+    <span class="glyphicon glyphicon-filter"></span>Filter
+  </span>
+</div>
+<div ng-if="filterEvents.expanded" class="container col-xs-12 filter-expanded">
+  <div class="row">
+    <div class="col-xs-4">Price</div>
+    <div class="col-xs-8">slider bar</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4">Distance</div>
+    <div class="col-xs-8">slider bar</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4">Date</div>
+    <div class="col-xs-8">bubbles</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4">Tags</div>
+    <div class="col-xs-8">bubbles</div>
+  </div>
+</div>
