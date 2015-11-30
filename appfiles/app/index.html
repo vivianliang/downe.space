@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="downespace">
+  <body>
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -56,6 +56,8 @@
     <script src="bower_components/moment/moment.js"></script>
     <script src="bower_components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js"></script>
     <script src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="bower_components/angular-ui-utils/ui-utils.js"></script>
+    <script src="bower_components/angular-ui-map/ui-map.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -70,9 +72,18 @@
     <script src="scripts/directives/footer.js"></script>
     <script src="scripts/directives/input.js"></script>
     <script src="scripts/directives/topbar.js"></script>
+    <script src="scripts/services/address.js"></script>
     <script src="scripts/services/auth.js"></script>
     <script src="scripts/services/date.js"></script>
     <script src="scripts/services/event.js"></script>
     <!-- endbuild -->
+    <script>
+    function onGoogleReady() {
+      angular.bootstrap(document, ['downespace']);
+    }
+    </script>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?v=3.exp&callback=onGoogleReady">
+    </script>
 </body>
 </html>

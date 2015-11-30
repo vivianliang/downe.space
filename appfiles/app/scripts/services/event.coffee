@@ -21,8 +21,9 @@ angular.module('downespace').service 'Event', ($http, Date) ->
       newEvent.end = Date.toTimestamp newEvent.end
     return $http.post('/api/event/', newEvent).then ({data}) -> data
 
-  service.getEvents = (page=1) ->
+  service.getEvents = (page=1, filters) ->
     params = page: page
+    params = _.merge params, filters
     return $http.get('/api/events/', params: params).then ({data}) ->
       data.events = service.processEvents data.events
       return data

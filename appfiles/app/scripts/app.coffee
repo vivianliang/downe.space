@@ -15,7 +15,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ui.map'
   ]
   .run ($rootScope, Auth) ->
     Auth.getUser().then (data) ->
