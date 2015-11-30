@@ -8,6 +8,20 @@ angular.module('downespace').directive 'eventDetail', ->
     templateUrl : 'views/directives/eventdetail.html'
   return directive
 
-angular.module('downespace').controller 'eventDetailController', (Event) ->
-  console.log 'event detail controller'
+angular.module('downespace').controller 'eventDetailController', (Event, $routeParams) ->
+  this.eventId =  $routeParams.id
+  this.event = null
+
+  this.getEvent = =>
+    Event.getEvent(this.eventId).then (eventData) =>
+      this.event = eventData
+      return
+    return
+
+  this.getEvent()
+
+  this.addToCalendar = ->
+    # TODO
+    return
+
   return

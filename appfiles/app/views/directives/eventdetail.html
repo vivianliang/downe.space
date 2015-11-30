@@ -1,1 +1,69 @@
-event detail
+<div class="container col-xs-12">
+  <div class="row header">
+    <img src="http://placehold.it/880x300/83abb9/fff" alt="" />
+  </div>
+  <div class="row">
+    <div class="col-xs-6" style="padding: 0px;">
+      <div class="event-detail-section section-left">
+        <div><h4>{{ eventDetail.event.name }}</h4></div>
+        <div>
+          <i class="fa fa-calendar event-info"></i>
+          {{ eventDetail.event.start }} - {{ eventDetail.event.end }}
+        </div>
+        <div>
+          <i class="fa fa-map-marker fa-lg event-info"></i>
+          {{ eventDetail.event.location }}
+        </div>
+        <div>
+          <i class="fa fa-envelope event-info"></i>
+          {{ eventDetail.event.contact.name }}
+        </div>
+      </div>
+
+      <div class="event-detail-section section-left">
+        <div class="row">
+          <div class="col-xs-5">
+            <small>SHARE THIS EVENT</small>
+            <div>
+              <a href="" class="fa-stack">
+                <i class="fa fa-circle facebook fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </a>
+              <a href="" class="fa-stack">
+                <i class="fa fa-circle twitter fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </a>
+              <a href="" class="fa-stack">
+                <i class="fa fa-circle linkedin fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </a>
+            </div>
+          </div>
+          <div class="col-xs-7 text-right" style="line-height: 48px;">
+            <a ng-click="eventDetail.addToCalendar()">
+              <i class="fa fa-calendar-plus-o event-info"></i>
+              <small>ADD EVENT TO MY CALENDAR</small>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-6" style="padding: 0px;">
+      <div class="event-detail-section">
+        <div class="description">
+          <small>DESCRIPTION</small>
+        </div>
+        {{ eventDetail.event.description }}
+      </div>
+      <div class="event-detail-section">
+        <div class="description">
+          <small>DETAILS</small>
+        </div>
+        <!-- TODO: replace with event.url -->
+        <a href="www.facebook.com">www.facebook.com</a>
+      </div>
+    </div>
+  </div>
+
+</div>
