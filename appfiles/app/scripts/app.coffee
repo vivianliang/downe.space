@@ -31,6 +31,8 @@ angular
         templateUrl: 'views/main.html'
       .when '/create',
         template: '<create></create>'
+      .when '/event/:id?',
+        template: '<event-detail></event-detail>'
       .otherwise
         redirectTo: '/'
 

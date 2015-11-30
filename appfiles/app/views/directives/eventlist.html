@@ -21,19 +21,28 @@
       class="item col-xs-4 col-lg-4"
       ng-class="{ 'list-group-item': !eventList.gridView }"
       ng-repeat="event in eventList.events">
-      <div class="thumbnail">
-        <img class="group list-group-image" src="http://placehold.it/400x250/83abb9/fff" alt="" />
-        <div class="caption">
-          <h4 class="group inner list-group-item-heading">{{ event.name }}</h4>
-          <div class="group inner list-group-item-text">{{ event.description }}</div>
-          <div class="group inner list-group-item-text">{{ event.location }}</div>
-          <div class="group inner list-group-item-text">{{ event.contact.name }}</div>
-          <div ng-if="!eventList.gridView" class="group inner list-group-item-text">Start: {{ event.start }}</div>
-          <div ng-if="!eventList.gridView" class="group inner list-group-item-text">End: {{ event.end }}</div>
-          <div class="row">
+      <a ng-href="#/event/{{ event.id }}">
+        <div class="thumbnail">
+          <img class="group list-group-image" src="http://placehold.it/400x250/83abb9/fff" alt="" />
+          <div class="caption">
+            <h4 class="group inner list-group-item-heading">{{ event.name }}</h4>
+            <div class="group inner list-group-item-text">{{ event.description }}</div>
+            <div class="group inner list-group-item-text">{{ event.location }}</div>
+            <div class="group inner list-group-item-text">{{ event.contact.name }}</div>
+            <div
+              ng-if="!eventList.gridView"
+              class="group inner list-group-item-text">
+              Start: {{ event.start }}
+            </div>
+            <div
+              ng-if="!eventList.gridView"
+              class="group inner list-group-item-text">
+              End: {{ event.end }}
+            </div>
+            <div class="row"></div>
           </div>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 
