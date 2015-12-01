@@ -11,15 +11,7 @@ describe 'Directive: eventList', ->
       this.$httpBackend = $httpBackend
       this.Event        = Event
       this.$q           = $q
-
-    this.createController = =>
-      this.controller = this.$controller 'eventListController',
-        $rootScope: this.$rootScope
-      , this.$rootScope
-      this.$rootScope.$digest()
       return
-
-    this.$httpBackend.expectGET("/api/auth/").respond {}
 
     this.timestamp = 1420095600
 
@@ -47,22 +39,39 @@ describe 'Directive: eventList', ->
       more       : true
     }
 
+    this.$httpBackend.expectGET('/api/auth/').respond {}
+    this.controller = this.$controller 'eventListController'
+    this.controller.resetEvents()
+    this.$rootScope.$digest()
+    this.$httpBackend.flush()
+    return
 
   afterEach ->
     this.$httpBackend.verifyNoOutstandingExpectation()
     this.$httpBackend.verifyNoOutstandingRequest()
+    return
 
-  it 'should get events on start', ->
-    this.$httpBackend.expectGET("/api/events/?page=1").respond this.expectedResponse
-    this.createController()
+  it 'should reset event data', ->
+    expect(this.controller.events).toEqual []
+    expect(this.controller.nextPage).toEqual 1
+    expect(this.controller.more).toEqual true
+    expect(this.controller.gridView).toEqual true
+    expect(this.controller.filters).toEqual {}
+    return
+
+  it 'should get events', ->
+    this.$httpBackend.expectGET('/api/events/?page=1').respond this.expectedResponse
+    this.controller.getEvents()
     this.$httpBackend.flush()
     expect(this.controller.events).toEqual this.Event.processEvents(this.events)
+    return
 
   it 'should get more events', ->
-    this.$httpBackend.expectGET("/api/events/?page=1").respond this.expectedResponse
-    this.createController()
+    this.$httpBackend.expectGET('/api/events/?page=1').respond this.expectedResponse
+    this.controller.getEvents()
     this.$httpBackend.flush()
 
+    expect(this.controller.events).toEqual this.Event.processEvents(this.events)
     expect(this.controller.events).toEqual this.Event.processEvents(this.events)
     expect(this.controller.more).toBe true
     expect(this.controller.nextPage).toEqual 2
@@ -70,7 +79,10 @@ describe 'Directive: eventList', ->
     this.expectedResponse.more = false
 
     this.controller.getEvents()
-    this.$httpBackend.expectGET("/api/events/?page=2").respond this.expectedResponse
+    this.$httpBackend.expectGET('/api/events/?page=2').respond this.expectedResponse
     this.$httpBackend.flush()
 
     expect(this.controller.more).toBe false
+    return
+
+  return

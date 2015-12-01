@@ -17,7 +17,6 @@ angular.module('downespace').controller 'filterEventsController',
     this.eventList       = $scope.eventList
     this.filters         = {}
     this.expanded        = false
-    this.waiting         = false
     # debounce 500ms unless blur (lose focus), then update immediately
     this.locationOptions = updateOn: 'default blur', debounce: {default: 500, blur: 0}
 
@@ -76,7 +75,6 @@ angular.module('downespace').controller 'filterEventsController',
     $scope.$watch (=> this.location), (location) =>
       if location
         this.coordPromise = Address.getCoords(location).then (results) =>
-          this.waiting          = false
           result                = results[0]
           this.formattedAddress = result.formatted_address
           this.filters.lat      = result.geometry.location.lat()
