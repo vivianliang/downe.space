@@ -1,6 +1,6 @@
 'use strict'
 
-DATE_FORMAT = 'ddd, MMM D, H:m A'
+DATE_FORMAT = 'ddd, MMM D, h:mm A'
 
 angular.module('downespace').service 'Date', ->
   service = {}

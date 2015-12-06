@@ -18,6 +18,11 @@
           <i class="fa fa-envelope event-info"></i>
           {{ eventDetail.event.contact.name }}
         </div>
+        <div>
+          <i class="fa fa-external-link event-info"></i>
+          <!-- TODO: replace with event.url -->
+          <a href="www.facebook.com">www.facebook.com</a>
+        </div>
       </div>
 
       <div class="event-detail-section section-left">
@@ -55,13 +60,6 @@
           <small>DESCRIPTION</small>
         </div>
         {{ eventDetail.event.description }}
-      </div>
-      <div class="event-detail-section">
-        <div class="description">
-          <small>DETAILS</small>
-        </div>
-        <!-- TODO: replace with event.url -->
-        <a href="www.facebook.com">www.facebook.com</a>
       </div>
     </div>
   </div>
