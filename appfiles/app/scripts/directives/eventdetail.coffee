@@ -9,8 +9,8 @@ angular.module('downespace').directive 'eventDetail', ->
   return directive
 
 angular.module('downespace').controller 'eventDetailController', (Event, $routeParams) ->
-  this.eventId =  $routeParams.id
-  this.event = null
+  this.eventId = $routeParams.id
+  this.event   = null
 
   this.getEvent = =>
     Event.getEvent(this.eventId).then (eventData) =>
