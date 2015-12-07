@@ -12,7 +12,6 @@ describe 'Service: Event', ->
     this.$httpBackend.expectGET('/api/auth/').respond {}
 
     this.timestamp = 1420095600
-    this.dateString = '01/01/2015 12:00AM'
 
   it 'should get paged events', ->
     events = [
@@ -85,5 +84,5 @@ describe 'Service: Event', ->
     expect(processedEvent.id).toEqual event.id
     expect(processedEvent.name).toEqual event.name
     expect(processedEvent.description).toEqual event.description
-    expect(processedEvent.start).toEqual moment.unix(event.start).format 'MM/DD/YYYY hh:mm A'
-    expect(processedEvent.end).toEqual moment.unix(event.end).format 'MM/DD/YYYY hh:mm A'
+    expect(processedEvent.start).toEqual moment.unix(event.start).format 'ddd, MMM D, h:mm A'
+    expect(processedEvent.end).toEqual moment.unix(event.end).format 'ddd, MMM D, h:mm A'

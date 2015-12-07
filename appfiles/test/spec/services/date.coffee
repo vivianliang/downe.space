@@ -10,7 +10,7 @@ describe 'Service: Date', ->
 
     this.testDate   = moment '2015-01-01T00:00:00-08:00'
     this.timestamp  = this.testDate.clone().unix()
-    this.dateString = this.testDate.clone().format 'MM/DD/YYYY hh:mm A'
+    this.dateString = this.testDate.clone().format 'ddd, MMM D, h:mm A'
     return
 
   it 'should convert a moment to a unix timestamp', ->
