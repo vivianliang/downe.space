@@ -10,20 +10,21 @@ angular.module('downespace').directive 'eventList', ->
 
 angular.module('downespace').controller 'eventListController', (Event) ->
 
-  this.events   = []
-  this.nextPage = 1
-  this.more     = true
-  this.gridView = true
+  this.resetEvents = =>
+    this.events   = []
+    this.nextPage = 1
+    this.more     = true
+    this.gridView = true
+    this.filters = {}
+    return
 
   this.getEvents = =>
-    Event.getEvents(this.nextPage).then (eventData) =>
+    Event.getEvents(this.nextPage, this.filters).then (eventData) =>
       this.events.push eventData.events...
       this.more = eventData.more
       if this.more
         this.nextPage = eventData.page + 1
       return
     return
-
-  this.getEvents()
 
   return
