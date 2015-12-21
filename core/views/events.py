@@ -1,7 +1,9 @@
+from django.core.exceptions import ValidationError
 from django.core.paginator import EmptyPage, Paginator
-from django.http import JsonResponse
+from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from ..forms import EventForm
 from ..location_utils import mi_to_km
 from ..models import Coords, Event
 from ..serializers import EventSerializer
@@ -10,6 +12,7 @@ from ..serializers import EventSerializer
 class EventsView(APIView):
 
   def get(self, request, *args, **kwargs):
+    '''Get events.'''
     events = Event.objects.all()
 
     # location range filter
@@ -35,4 +38,17 @@ class EventsView(APIView):
       'page'       : page,
       'more'       : page < paginator.num_pages
     }
-    return JsonResponse(data)
+    return Response(data)
+
+  def post(self, request, *args, **kwargs):
+    '''Create a new event.'''
+    data            = request.data
+    data['contact'] = request.user.id
+    event_form      = EventForm(data)
+
+    if not event_form.is_valid():
+      raise ValidationError(event_form.errors)
+
+    event = Event.objects.create(**event_form.cleaned_data)
+
+    return Response(EventSerializer(event).data)
