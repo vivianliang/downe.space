@@ -12,6 +12,7 @@ angular
   .module 'downespace', [
     'ngAnimate',
     'ngCookies',
+    'ngFileUpload',
     'ngResource',
     'ngRoute',
     'ngSanitize',

@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.core.files.images import get_image_dimensions
 from django.forms import Form
 
 from .fields import TimestampField
@@ -13,6 +14,22 @@ class EventForm(Form):
   frequency   = forms.IntegerField()
   location    = forms.CharField()
   contact     = forms.ModelChoiceField(queryset=User.objects)
+
+  def clean(self):
+    cleaned_data = super(EventForm, self).clean()
+    picture = cleaned_data.get('picture')
+
+    if picture:
+      max_width = max_height = 1000
+
+      width, height = get_image_dimensions(picture)
+      if width > max_width or height > max_height:
+        raise forms.ValidationError(
+          'Use an image that is %s x %s pixels or smaller.' % (max_width, max_width))
+
+      main, sub = picture.content_type.split('/')
+      if not (main == 'image' and sub in ['jpeg', 'pjpeg', 'gif', 'png']):
+        raise forms.ValidationError('Please use a JPEG, GIF or PNG image.')
 
 
 class EditEventForm(Form):
