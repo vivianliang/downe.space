@@ -10,3 +10,9 @@ def create_coords(sender, **kwargs):
   if kwargs['created'] is True:
     coords = get_coords(kwargs['instance'].location)
     Coords.objects.create(event=kwargs['instance'], lat=coords['lat'], lon=coords['lng'])
+  elif 'location' in kwargs['update_fields']:
+    new_coords       = get_coords(kwargs['instance'].location)
+    coord_object     = Coords.objects.get(event=kwargs['instance'])
+    coord_object.lat = new_coords['lat']
+    coord_object.lon = new_coords['lng']
+    coord_object.save()

@@ -1,4 +1,5 @@
 from django.core.exceptions import ValidationError
+from django.db import transaction
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -33,11 +34,14 @@ class EventView(APIView):
     if not event_form.is_valid():
       raise ValidationError(event_form.errors)
 
+    updated_fields = []
     for key, value in event_form.cleaned_data.iteritems():
       if not value or getattr(event, key) == value:
         continue
       setattr(event, key, value)
+      updated_fields.append(key)
 
-    event.save()
+    with transaction.atomic():
+      event.save(update_fields=updated_fields)
 
     return Response(EventSerializer(event).data)

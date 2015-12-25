@@ -37,6 +37,6 @@ angular.module('downespace').service 'Event', ($http, Date) ->
       newEvent.start = Date.toTimestamp newEvent.start
     if newEvent.end
       newEvent.end = Date.toTimestamp newEvent.end
-    return $http.put("/api/event/#{ newEvent.id }", newEvent).then ({data}) -> data
+    return $http.put("/api/event/#{ newEvent.id }/", newEvent).then ({data}) -> data
 
   return service

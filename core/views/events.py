@@ -1,5 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.core.paginator import EmptyPage, Paginator
+from django.db import transaction
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -49,6 +50,7 @@ class EventsView(APIView):
     if not event_form.is_valid():
       raise ValidationError(event_form.errors)
 
-    event = Event.objects.create(**event_form.cleaned_data)
+    with transaction.atomic():
+      event = Event.objects.create(**event_form.cleaned_data)
 
     return Response(EventSerializer(event).data)

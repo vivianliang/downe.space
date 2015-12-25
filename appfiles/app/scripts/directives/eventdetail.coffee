@@ -24,8 +24,4 @@ angular.module('downespace').controller 'eventDetailController', (Event, $routeP
     # TODO
     return
 
-  this.editEvent = ->
-    Event.edit(id: this.eventId, name: 'rwc starbucks', description: 'some test desc')
-    return
-
   return
