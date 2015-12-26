@@ -1,48 +1,47 @@
-from django import forms
-from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.db import transaction
-from django.forms import Form
-from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from ..forms import TimestampField
+from ..forms import EditEventForm
 from ..models import Event
 from ..serializers import EventSerializer
 
 
-class EventForm(Form):
-  name        = forms.CharField()
-  description = forms.CharField()  # will return '' if empty
-  start       = TimestampField()
-  end         = TimestampField()
-  frequency   = forms.IntegerField()
-  location    = forms.CharField()
-  contact     = forms.ModelChoiceField(queryset=User.objects)
-
-
 class EventView(APIView):
 
-  def get(self, request, event_id, *args, **kwargs):
-    '''Get an event'''
+  def initial(self, request, event_id, *args, **kwargs):
     try:
-      event = Event.objects.get(id=event_id)
+      request.event = Event.objects.get(id=event_id)
     except Event.DoesNotExist:
       raise Exception('invalid event id')
+    return super(EventView, self).initial(request, args, kwargs)
 
-    return JsonResponse(EventSerializer(event).data, safe=False)
+  def get(self, request, event_id, *args, **kwargs):
+    '''Get an event.'''
+    return Response(EventSerializer(request.event).data)
 
-  def post(self, request, *args, **kwargs):
-    '''Create a new event.'''
-    data = request.data
-    data['contact'] = request.user.id
-    event_form = EventForm(data)
+  def put(self, request, event_id, *args, **kwargs):
+    '''Edit an event.'''
+    event = request.event
+
+    # TODO: define permissions to use with DRF in the correct way
+    if request.user.id is not event.contact.id:
+      raise Exception('user does not have permission to edit event')
+
+    event_form = EditEventForm(request.data)
 
     if not event_form.is_valid():
       raise ValidationError(event_form.errors)
 
+    updated_fields = []
+    for key, value in event_form.cleaned_data.iteritems():
+      if not value or getattr(event, key) == value:
+        continue
+      setattr(event, key, value)
+      updated_fields.append(key)
+
     with transaction.atomic():
-      event = Event.objects.create(**event_form.cleaned_data)
+      event.save(update_fields=updated_fields)
 
     return Response(EventSerializer(event).data)

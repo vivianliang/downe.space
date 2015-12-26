@@ -2,7 +2,7 @@ from datetime import datetime
 
 from django.forms import Form
 
-from core.forms import TimestampField
+from core.forms.fields import TimestampField
 from DowneSpace.test import TestCase
 
 
