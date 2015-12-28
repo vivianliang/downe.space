@@ -16,6 +16,8 @@ class EventSerializer(serializers.Serializer):
   location    = serializers.CharField(max_length=2048)
   coords      = CoordsSerializer(many=True)
   contact     = UserSerializer()
+  url         = serializers.URLField()
+  image       = serializers.CharField()
 
   class Meta:
     model = Event

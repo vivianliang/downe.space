@@ -15,4 +15,4 @@ class Event(models.Model):
   frequency   = EnumIntegerField(Frequency, default=Frequency.none)
   contact     = models.ForeignKey(User, related_name="events", null=True)
   url         = models.URLField(null=True)
-  picture     = models.ImageField(null=True)
+  image       = models.TextField(null=True)

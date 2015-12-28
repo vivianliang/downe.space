@@ -32,17 +32,23 @@ Create Event
 </div>
 
 <div class="form-group">
+  <label>URL</label>
+  <input type="text" class="form-control" ng-model="create.newEvent.url">
+</div>
+
+<div class="form-group">
   <label>Photo</label>
   <input
     type="file"
     class="form-control"
     ngf-select
     accept="image/*"
-    ng-model="create.newEvent.picture">
+    ng-model="create.imageFile"
+    ng-change="create.convertPicture()">
   <img
-    ng-show-"create.newEvent.picture.$valid"
-    ngf-thumbnail="create.newEvent.picture"
-    style="width: 24px; height: 24px;">
+    ng-show="create.newEvent.image"
+    ng-src="{{ create.newEvent.image }}"
+    style="width:24px; height:24px;">
 </div>
 
-<button type="submit" class="btn btn-default" ng-click="create.createEvent()" ng-disabled="create.newEvent.name === undefined">Create Event</button>
+<button type="submit" class="btn btn-default" ng-click="create.createEvent()" ng-disabled="!create.newEvent.name">Create Event</button>

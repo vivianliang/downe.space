@@ -11,13 +11,29 @@ class EventForm(Form):
   description = forms.CharField()  # will return '' if empty
   start       = TimestampField()
   end         = TimestampField()
-  frequency   = forms.IntegerField()
+  frequency   = forms.IntegerField(required=False)
   location    = forms.CharField()
   contact     = forms.ModelChoiceField(queryset=User.objects)
+  url         = forms.URLField(required=False)
+  image       = forms.CharField(required=False)
+
+
+class EditEventForm(Form):
+  name        = forms.CharField(required=False)
+  description = forms.CharField(required=False)  # will return '' if empty
+  start       = TimestampField(required=False)
+  end         = TimestampField(required=False)
+  frequency   = forms.IntegerField(required=False)
+  location    = forms.CharField(required=False)
+
+
+class PictureForm(Form):
+  picture = forms.ImageField()
 
   def clean(self):
-    cleaned_data = super(EventForm, self).clean()
+    cleaned_data = super(PictureForm, self).clean()
     picture = cleaned_data.get('picture')
+    print 'clean picture'
 
     if picture:
       max_width = max_height = 1000
@@ -30,12 +46,3 @@ class EventForm(Form):
       main, sub = picture.content_type.split('/')
       if not (main == 'image' and sub in ['jpeg', 'pjpeg', 'gif', 'png']):
         raise forms.ValidationError('Please use a JPEG, GIF or PNG image.')
-
-
-class EditEventForm(Form):
-  name        = forms.CharField(required=False)
-  description = forms.CharField(required=False)  # will return '' if empty
-  start       = TimestampField(required=False)
-  end         = TimestampField(required=False)
-  frequency   = forms.IntegerField(required=False)
-  location    = forms.CharField(required=False)

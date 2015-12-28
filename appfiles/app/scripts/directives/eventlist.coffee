@@ -24,6 +24,7 @@ angular.module('downespace').controller 'eventListController', (Event) ->
       this.more = eventData.more
       if this.more
         this.nextPage = eventData.page + 1
+      console.log this.events
       return
     return
 

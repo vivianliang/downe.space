@@ -24,7 +24,8 @@
       ng-repeat="event in eventList.events">
       <a ng-href="#/event/{{ event.id }}">
         <div class="thumbnail">
-          <img class="group list-group-image" src="http://placehold.it/400x250/83abb9/fff" alt="" />
+          <img class="group list-group-image" ng-if="event.image" ng-src="{{ event.image }}">
+          <img class="group list-group-image" ng-if="!event.image" src="http://placehold.it/265x165/83abb9/fff">
           <div class="caption">
             <h4 class="group inner list-group-item-heading">{{ event.name }}</h4>
             <div class="group inner list-group-item-text">{{ event.description }}</div>

@@ -13,6 +13,7 @@ angular.module('downespace').service 'Event', ($http, Date) ->
     return _.map rawEvents, service.processEvent
 
   service.create = (event) ->
+    console.log event
     newEvent = angular.copy event
     # TODO: remove these if-checks once frontend form validation is added
     if newEvent.start
@@ -20,6 +21,9 @@ angular.module('downespace').service 'Event', ($http, Date) ->
     if newEvent.end
       newEvent.end = Date.toTimestamp newEvent.end
     return $http.post('/api/events/', newEvent).then ({data}) -> data
+
+  service.addPicture = (pictureFile) ->
+    return $http.put('/api/events/', pictureFile).then ({data}) -> data
 
   service.getEvents = (page=1, filters) ->
     params = _.merge page: page, filters

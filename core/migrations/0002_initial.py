@@ -45,7 +45,7 @@ class Migration(migrations.Migration):
                 ('location', bleachfields.bleachtext.BleachTextField(max_length=2048)),
                 ('frequency', enumfields.fields.EnumIntegerField(default=0, enum=core.models.enums.frequency.Frequency)),
                 ('url', models.URLField(null=True)),
-                ('picture', models.ImageField(null=True, upload_to=b'')),
+                ('image', models.TextField(null=True)),
                 ('contact', models.ForeignKey(related_name='events', to=settings.AUTH_USER_MODEL, null=True)),
             ],
         ),
