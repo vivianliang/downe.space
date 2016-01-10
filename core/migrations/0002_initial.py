@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('core', '0002_create_admin'),
+        ('core', '0001_create_admin'),
     ]
 
     operations = [

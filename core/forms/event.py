@@ -24,3 +24,5 @@ class EditEventForm(Form):
   end         = TimestampField(required=False)
   frequency   = forms.IntegerField(required=False)
   location    = forms.CharField(required=False)
+  url         = forms.URLField(required=False)
+  image       = forms.CharField(required=False)

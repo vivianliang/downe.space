@@ -12,21 +12,20 @@ angular.module('downespace').controller 'createController', ($rootScope, Event, 
 
   this.imageFile = null
 
-  this.newEvent =
-    name       : null
-    description: null
-    start      : null
-    end        : null
-    frequency  : null
-    location   : null
-    url        : null
-    image      : null
-
   resetEvent = =>
-    this.newEvent = {}
+    this.newEvent =
+      name       : null
+      description: null
+      start      : null
+      end        : null
+      frequency  : null
+      location   : null
+      url        : null
+      image      : null
+
     return
 
-  this.convertPicture = =>
+  this.convertImage = =>
     Upload.base64DataUrl(this.imageFile).then (data) =>
       this.newEvent.image = data
       return
