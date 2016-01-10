@@ -24,13 +24,20 @@
       ng-repeat="event in eventList.events">
       <a ng-href="#/event/{{ event.id }}">
         <div class="thumbnail">
-          <img class="group list-group-image" ng-if="event.image" ng-src="{{ event.image }}">
-          <img class="group list-group-image" ng-if="!event.image" src="http://placehold.it/265x165/83abb9/fff">
+          <div class="thumbnail-image">
+            <img class="group list-group-image" ng-if="event.image" ng-src="{{ event.image }}">
+            <img class="group list-group-image" ng-if="!event.image" src="http://placehold.it/265x165/83abb9/fff">
+          </div>
           <div class="caption">
             <h4 class="group inner list-group-item-heading">{{ event.name }}</h4>
-            <div class="group inner list-group-item-text">{{ event.description }}</div>
-            <div class="group inner list-group-item-text">{{ event.location }}</div>
-            <div class="group inner list-group-item-text">{{ event.contact.name }}</div>
+            <div class="group inner list-group-item-text">
+              <i class="fa fa-calendar"></i>
+              {{ event.start }}
+            </div>
+            <div class="group inner list-group-item-text">
+              <i class="fa fa-map-marker fa-lg"></i>
+              {{ event.location }}
+            </div>
             <div
               ng-if="!eventList.gridView"
               class="group inner list-group-item-text">

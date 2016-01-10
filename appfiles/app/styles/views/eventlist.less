@@ -1,3 +1,5 @@
+@import '../common';
+
 .well {
   background-color: #eee;
 }
@@ -11,11 +13,33 @@
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   border-radius: 0px;
+}
+
+// TODO: the pixels here are inprecise because we're using bootstrap col so the width
+// of each event box is 33.3% of the outer container's width
+.thumbnail-image {
+  height: 165px;
+  width: 261.5px;
+  overflow: hidden;
+  background-color: #eee;
 
   img {
-    height: 165px;
-    width: 265px;
+    width: inherit;
+    margin: auto;
   }
+}
+
+.caption {
+  .fa {
+    color: @orange;
+    width: 20px;
+  }
+}
+
+.list-group-item-heading, .list-group-item-text {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .list-group {
