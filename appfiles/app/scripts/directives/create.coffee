@@ -33,7 +33,7 @@ angular.module('downespace').controller 'createController', ($rootScope, Event, 
     return
 
   this.createEvent = =>
-    Event.create(this.newEvent).then (createdEvent) =>
+    Event.create(this.newEvent).then (createdEvent) ->
       resetEvent()
       return
     return
