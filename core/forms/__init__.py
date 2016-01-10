@@ -1,2 +1,2 @@
 # flake8: noqa
-from .event import EditEventForm, EventForm, PictureForm
+from .event import EditEventForm, EventForm
