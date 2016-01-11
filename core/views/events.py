@@ -45,7 +45,7 @@ class EventsView(APIView):
     '''Create a new event.'''
     data            = request.data
     data['contact'] = request.user.id
-    event_form      = EventForm(data, request.FILES)
+    event_form      = EventForm(data)
 
     if not event_form.is_valid():
       raise ValidationError(event_form.errors)
