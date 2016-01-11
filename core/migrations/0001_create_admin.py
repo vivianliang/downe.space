@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.contrib.auth import get_user_model
 from django.db import migrations, models
+from django.conf import settings
 
 
 def create_admin(apps, schema_editor):
@@ -11,9 +12,8 @@ def create_admin(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('core', '0001_initial'),
+      migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [

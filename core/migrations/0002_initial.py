@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-import bleachfields.bleachtext
-import enumfields.fields
+from django.db import models, migrations
 from django.conf import settings
-from django.db import migrations, models
-
+import enumfields.fields
+import bleachfields.bleachtext
 import core.models.enums.frequency
 
 
@@ -13,6 +12,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        ('core', '0002_create_admin'),
     ]
 
     operations = [
