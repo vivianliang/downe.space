@@ -1,17 +1,13 @@
 <!-- TODO: should probably move into top bar so this is on every page.
      Then change app.coffee to just use <event-list> directive at /. -->
 <div style="float: right; margin-bottom: 20px;">
-  <div class="row">
+  <div class="text-right" ng-if="!currentUser">
+    <a href="/login/facebook/">Login with Facebook</a>
+  </div>
 
-    <div class="text-right" ng-if="!currentUser">
-      <a href="/login/facebook/">Login with Facebook</a>
-    </div>
-
-    <div class="text-right" ng-if="currentUser">
-      Logged in as {{ currentUser.name }} -
-      <a href="/api/logout/">Logout</a>
-    </div>
-
+  <div class="text-right" ng-if="currentUser">
+    Logged in as {{ currentUser.name }} -
+    <a href="/api/logout/">Logout</a>
   </div>
 </div>
 

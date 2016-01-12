@@ -1,33 +1,39 @@
 .well {
-  background-color: #eee;
+  background-color: @light-gray;
 }
 
 .glyphicon { margin-right:5px; }
 
 // bootstrap override
-.thumbnail
-{
+a.thumbnail {
   padding              : 0px;
   -webkit-border-radius: 0px;
   -moz-border-radius   : 0px;
   border-radius        : 0px;
+
+  &:hover, &:focus {
+    border-color: @orange;
+  }
 }
 
 // TODO: the pixels here are inprecise and not round numbers because we're using
-// bootstrap grid to determine the widths. Fix this. Images
+// bootstrap grid to determine the widths.
+//
+// We are also prioritizing height over width for the img so that images with more height
+// than width have white space on the right when displayed. We need to check image dimensions
+// during upload and crop or something.
 .thumbnail-image {
   height          : 165px;
   overflow        : hidden;
-  background-color: #eee;
+  background-color: @medium-gray;
 
   img {
-    // TODO: we need to check image dimensions and crop or something
-    // max-width: 262px;
-    max-height: 165px;
+    max-width: 267px;
     margin   : auto;
   }
 }
 
+// bootstrap override
 .caption {
   .fa {
     color: @orange;
@@ -35,69 +41,52 @@
   }
 }
 
-.list-group-item-heading, .list-group-item-text {
+.item {
+  padding: 17px 17px 0 17px;
+}
+
+.item-text {
   text-overflow: ellipsis;
   white-space  : nowrap;
   overflow     : hidden;
+  margin       : 3px 0;
 }
 
-.list-group {
+.list-view {
   margin-right : 0;
   margin-left  : 0;
   margin-bottom: 20px;
-}
 
-.item.list-group-item
-{
-  float           : none;
-  width           : 100%;
-  background-color: #fff;
-  margin-bottom   : 10px;
-}
+  .list-view-item {
+    float: none;
+    width: 100%;
+    padding: 5px 0;
 
-.item.list-group-item:hover
-{
-  background: @light-blue;
-}
+    .thumbnail {
+      max-height: 162px;
+      overflow  : hidden;
 
-.item.list-group-item .list-group-image
-{
-  margin-right: 10px;
-  width       : 230px;
-}
+      .thumbnail-image {
+        height  : 165px;
+        width   : 262px;
+        overflow: hidden;
+        display : inline-block;
 
-.item.list-group-item .thumbnail
-{
-  margin: 0 -5px 0 -5px;
-}
+        img {
+          margin: auto;
+          max-width: 262px;
+          max-height: 165px;
+        }
+      }
 
-.item.list-group-item .caption
-{
-  padding: 9px 9px 0px 9px;
-}
-
-.item.list-group-item
-{
-  background: @background-gray-darker;
-}
-
-.item.list-group-item:before, .item.list-group-item:after
-{
-  display: table;
-  content: " ";
-}
-
-.item.list-group-item img
-{
-  float: left;
-}
-
-.item.list-group-item:after
-{
-  clear: both;
-}
-
-.list-group-item-text
-{
-  margin: 0 0 3px;
+      .caption {
+        display: inline-block;
+        width: 550px;
+        height: 160px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
+  }
 }
