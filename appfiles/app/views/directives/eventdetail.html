@@ -1,9 +1,21 @@
 <div class="container col-xs-12">
+
+  <!-- Cover photo to be added in after MVP -->
+  <!--
   <div class="row header">
-    <img src="http://placehold.it/880x300/83abb9/fff" alt="" />
+    <img ng-if="eventDetail.event.image" ng-src="{{ eventDetail.event.image }}">
+    <img ng-if="!eventDetail.event.image" src="http://placehold.it/880x300/83abb9/fff">
   </div>
+  -->
+
   <div class="row">
     <div class="col-xs-6" style="padding: 0px;">
+
+      <div class="event-detail-section section-left event-detail-image">
+        <img ng-if="eventDetail.event.image" ng-src="{{ eventDetail.event.image }}">
+        <img ng-if="!eventDetail.event.image" src="http://placehold.it/880x300/83abb9/fff">
+      </div>
+
       <div class="event-detail-section section-left">
         <div><h4>{{ eventDetail.event.name }}</h4></div>
         <div>
@@ -20,8 +32,7 @@
         </div>
         <div>
           <i class="fa fa-external-link event-info"></i>
-          <!-- TODO: replace with event.url -->
-          <a href="www.facebook.com">www.facebook.com</a>
+          <a ng-href="{{ eventDetail.event.url }}" target="_blank">{{ eventDetail.event.url }}</a>
         </div>
       </div>
 

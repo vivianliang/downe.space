@@ -10,9 +10,11 @@ class EventForm(Form):
   description = forms.CharField()  # will return '' if empty
   start       = TimestampField()
   end         = TimestampField()
-  frequency   = forms.IntegerField()
+  frequency   = forms.IntegerField(required=False)
   location    = forms.CharField()
   contact     = forms.ModelChoiceField(queryset=User.objects)
+  url         = forms.URLField(required=False)
+  image       = forms.CharField(required=False)  # TODO: image validation
 
 
 class EditEventForm(Form):
@@ -22,3 +24,5 @@ class EditEventForm(Form):
   end         = TimestampField(required=False)
   frequency   = forms.IntegerField(required=False)
   location    = forms.CharField(required=False)
+  url         = forms.URLField(required=False)
+  image       = forms.CharField(required=False)

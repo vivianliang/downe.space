@@ -8,10 +8,27 @@ angular.module('downespace').directive 'create', ->
     templateUrl : 'views/directives/create.html'
   return directive
 
-angular.module('downespace').controller 'createController', ($rootScope, Event) ->
+angular.module('downespace').controller 'createController', ($rootScope, Event, Upload) ->
+
+  this.imageFile = null
 
   resetEvent = =>
-    this.newEvent = {}
+    this.newEvent =
+      name       : null
+      description: null
+      start      : null
+      end        : null
+      frequency  : null
+      location   : null
+      url        : null
+      image      : null
+
+    return
+
+  this.convertImage = =>
+    Upload.base64DataUrl(this.imageFile).then (data) =>
+      this.newEvent.image = data
+      return
     return
 
   this.createEvent = =>

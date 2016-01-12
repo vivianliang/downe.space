@@ -26,7 +26,9 @@ class EventViewTest(TestCase):
       'frequency'  : 1,
       'location'   : '123 loop ave palo alto ca',
       'start'      : unix_timestamp,
-      'end'        : unix_timestamp
+      'end'        : unix_timestamp,
+      'url'        : 'google.com',
+      'image'      : 'data:image/png;base64,foo'
     }
     event_data = dumps(event_data)
     with patch('core.receivers.get_coords') as get_coords:
@@ -43,6 +45,8 @@ class EventViewTest(TestCase):
     self.assertEqual(event.location, '123 loop ave palo alto ca')
     self.assertEqual(event.start, date)
     self.assertEqual(event.end, date)
+    self.assertEqual(event.url, 'http://google.com')
+    self.assertEqual(event.image, 'data:image/png;base64,foo')
 
     coords = event.coords.first()
     self.assertEqual(coords.lat, 2.0)

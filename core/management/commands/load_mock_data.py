@@ -1,3 +1,4 @@
+import base64
 import csv
 import datetime
 from calendar import timegm
@@ -39,6 +40,12 @@ class Command(BaseCommand):
       if Event.objects.filter(name=row[0]).exists():
         return
 
+      if row[8]:
+        response = requests.get(row[8])
+        uri = (
+          "data:" + response.headers['Content-Type'] + ";" +
+          "base64," + base64.b64encode(response.content))
+
       event = {
         'name'       : row[0],
         'description': row[1],
@@ -46,7 +53,9 @@ class Command(BaseCommand):
         'end'        : self._format_datestring(row[3]),
         'frequency'  : 1,
         'location'   : row[5],
-        'contact'    : user_id
+        'contact'    : user_id,
+        'url'        : row[6] or None,
+        'image'      : uri or None
       }
       events.append(event)
 

@@ -32,6 +32,7 @@ module.exports = (config) ->
       'bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
       'bower_components/angular-ui-utils/ui-utils.js'
       'bower_components/angular-ui-map/ui-map.js'
+      'bower_components/ng-file-upload/ng-file-upload.js'
       'bower_components/angular-mocks/angular-mocks.js'
       # endbower
       # bower:coffee

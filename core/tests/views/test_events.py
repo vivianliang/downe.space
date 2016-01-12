@@ -64,7 +64,9 @@ class EventsViewTest(TestCase):
       'frequency'  : 1,
       'location'   : '123 loop ave palo alto ca',
       'start'      : unix_timestamp,
-      'end'        : unix_timestamp
+      'end'        : unix_timestamp,
+      'url'        : 'google.com',
+      'image'      : 'data:image/png;base64,foo'
     }
     with patch('core.receivers.get_coords'):
       response = self.client.post(self.url, event_data)
@@ -74,3 +76,5 @@ class EventsViewTest(TestCase):
     self.assertEqual(result['location'], '123 loop ave palo alto ca')
     self.assertEqual(result['start'], unix_timestamp)
     self.assertEqual(result['end'], unix_timestamp)
+    self.assertEqual(result['url'], 'http://google.com')
+    self.assertEqual(result['image'], 'data:image/png;base64,foo')

@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.db import models, migrations
-from django.conf import settings
-import enumfields.fields
 import bleachfields.bleachtext
+import enumfields.fields
+from django.conf import settings
+from django.db import migrations, models
+
 import core.models.enums.frequency
 
 
@@ -12,7 +13,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('core', '0002_create_admin'),
+        ('core', '0001_create_admin'),
     ]
 
     operations = [
@@ -44,6 +45,8 @@ class Migration(migrations.Migration):
                 ('end', models.DateTimeField()),
                 ('location', bleachfields.bleachtext.BleachTextField(max_length=2048)),
                 ('frequency', enumfields.fields.EnumIntegerField(default=0, enum=core.models.enums.frequency.Frequency)),
+                ('url', models.URLField(null=True)),
+                ('image', models.TextField(null=True)),
                 ('contact', models.ForeignKey(related_name='events', to=settings.AUTH_USER_MODEL, null=True)),
             ],
         ),

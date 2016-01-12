@@ -7,24 +7,52 @@
 // bootstrap override
 .thumbnail
 {
-  padding: 0px;
+  padding              : 0px;
   -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  border-radius: 0px;
+  -moz-border-radius   : 0px;
+  border-radius        : 0px;
+}
+
+// TODO: the pixels here are inprecise and not round numbers because we're using
+// bootstrap grid to determine the widths. Fix this. Images
+.thumbnail-image {
+  height          : 165px;
+  overflow        : hidden;
+  background-color: #eee;
+
+  img {
+    // TODO: we need to check image dimensions and crop or something
+    // max-width: 262px;
+    max-height: 165px;
+    margin   : auto;
+  }
+}
+
+.caption {
+  .fa {
+    color: @orange;
+    width: 20px;
+  }
+}
+
+.list-group-item-heading, .list-group-item-text {
+  text-overflow: ellipsis;
+  white-space  : nowrap;
+  overflow     : hidden;
 }
 
 .list-group {
-  margin-right: 0;
-  margin-left: 0;
+  margin-right : 0;
+  margin-left  : 0;
   margin-bottom: 20px;
 }
 
 .item.list-group-item
 {
-  float: none;
-  width: 100%;
+  float           : none;
+  width           : 100%;
   background-color: #fff;
-  margin-bottom: 10px;
+  margin-bottom   : 10px;
 }
 
 .item.list-group-item:hover
@@ -35,7 +63,7 @@
 .item.list-group-item .list-group-image
 {
   margin-right: 10px;
-  width: 230px;
+  width       : 230px;
 }
 
 .item.list-group-item .thumbnail

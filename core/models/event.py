@@ -14,3 +14,5 @@ class Event(models.Model):
   location    = BleachTextField(max_length=2048)
   frequency   = EnumIntegerField(Frequency, default=Frequency.none)
   contact     = models.ForeignKey(User, related_name="events", null=True)
+  url         = models.URLField(null=True)
+  image       = models.TextField(null=True)
