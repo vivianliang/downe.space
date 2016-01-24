@@ -1,5 +1,5 @@
 <filter-events></filter-events>
-<div class="container col-xs-12" style="margin-bottom: 20px;">
+<div class="container col-xs-12" style="margin-bottom: 20px; padding: 0;">
   <div class="well well-sm">
     <div class="btn-group">
       <span
@@ -17,39 +17,37 @@
     </div>
   </div>
 
-  <div class="row" ng-class="{'list-group': !eventList.gridView}">
+  <div class="row" ng-class="{'list-view': !eventList.gridView}">
     <div
       class="item col-xs-4 col-lg-4"
-      ng-class="{ 'list-group-item': !eventList.gridView }"
+      ng-class="{ 'list-view-item': !eventList.gridView }"
       ng-repeat="event in eventList.events">
-      <a ng-href="#/event/{{ event.id }}">
-        <div class="thumbnail">
-          <div class="thumbnail-image">
-            <img class="group list-group-image" ng-if="event.image" ng-src="{{ event.image }}">
-            <img class="group list-group-image" ng-if="!event.image" src="http://placehold.it/265x165/83abb9/fff">
+      <a ng-href="#/event/{{ event.id }}" class="thumbnail">
+        <div class="thumbnail-image">
+          <img class="group list-view-image" ng-if="event.image" ng-src="{{ event.image }}">
+          <img class="group list-view-image" ng-if="!event.image" src="http://placehold.it/265x165/83abb9/fff">
+        </div>
+        <div class="caption">
+          <h4 class="group inner item-text">{{ event.name }}</h4>
+          <div class="group inner item-text">
+            <i class="fa fa-calendar"></i>
+            {{ event.start }}
           </div>
-          <div class="caption">
-            <h4 class="group inner list-group-item-heading">{{ event.name }}</h4>
-            <div class="group inner list-group-item-text">
-              <i class="fa fa-calendar"></i>
-              {{ event.start }}
-            </div>
-            <div class="group inner list-group-item-text">
-              <i class="fa fa-map-marker fa-lg"></i>
-              {{ event.location }}
-            </div>
-            <div
-              ng-if="!eventList.gridView"
-              class="group inner list-group-item-text">
-              Start: {{ event.start }}
-            </div>
-            <div
-              ng-if="!eventList.gridView"
-              class="group inner list-group-item-text">
-              End: {{ event.end }}
-            </div>
-            <div class="row"></div>
+          <div class="group inner item-text">
+            <i class="fa fa-map-marker fa-lg"></i>
+            {{ event.location }}
           </div>
+          <div
+            ng-if="!eventList.gridView"
+            class="group inner item-text">
+            Start: {{ event.start }}
+          </div>
+          <div
+            ng-if="!eventList.gridView"
+            class="group inner item-text">
+            End: {{ event.end }}
+          </div>
+          <div class="row"></div>
         </div>
       </a>
     </div>
