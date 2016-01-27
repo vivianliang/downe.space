@@ -1,0 +1,33 @@
+language: python
+
+python:
+  - 2.7
+
+env:
+  global:
+    - SOCIAL_AUTH_FACEBOOK_KEY=''
+    - SOCIAL_AUTH_FACEBOOK_SECRET=''
+
+before_install:
+  - cd appfiles; npm install -g bower; cd ..
+
+install:
+  # appfiles
+  - cd appfiles; npm install
+  - bower install; cd ..
+
+  # root
+  - pip install -r requirements.txt
+
+script:
+  - cd appfiles; grunt circletest; cd ..
+  - flake8
+  - isort -c -rc .
+  - ./manage.py test
+
+cache:
+  directories:
+    - $HOME/.cache/pip
+    - $HOME/.cache/bower
+    - ./appfiles/node_modules
+    - ./appfiles/bower_components
