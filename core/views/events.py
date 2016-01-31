@@ -1,6 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.core.paginator import EmptyPage, Paginator
 from django.db import transaction
+from django.utils import timezone
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -14,7 +15,7 @@ class EventsView(APIView):
 
   def get(self, request, *args, **kwargs):
     '''Get events.'''
-    events = Event.objects.all()
+    events = Event.objects.exclude(end__lt=timezone.now()).order_by('start')
 
     # location range filter
     lat, lon, loc_range = [request.GET.get(key) for key in ['lat', 'lon', 'range']]

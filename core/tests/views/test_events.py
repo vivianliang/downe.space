@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from mock import patch
 
 from DowneSpace.test import TestCase
@@ -54,6 +56,28 @@ class EventsViewTest(TestCase):
     data = self.getJsonResponse(response)
 
     self.assertEqual(len(data['events']), 2)
+
+  def test_exclude_old_events(self):
+    self.create_event(
+      name  = 'old event',
+      start = self.now - timedelta(days=4),
+      end   = self.now - timedelta(days=2))
+
+    response = self.client.get(self.url)
+    data = self.getJsonResponse(response)
+
+    self.assertEqual(len(data['events']), 0)
+
+  def test_order_by_dates(self):
+    later_event   = self.create_event(name='later event', start=self.now + timedelta(days=1))
+    earlier_event = self.create_event(name='earlier event')
+
+    response = self.client.get(self.url)
+    data = self.getJsonResponse(response)
+
+    self.assertEqual(len(data['events']), 2)
+    self.assertEqual(data['events'][0]['name'], earlier_event.name)
+    self.assertEqual(data['events'][1]['name'], later_event.name)
 
   def test_create_event(self):
     # timestamp of date '2015-01-01 00:00:00'
