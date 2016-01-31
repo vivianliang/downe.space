@@ -1,6 +1,8 @@
 'use strict'
 
-angular.module('downespace').directive 'create', ->
+app = angular.module 'downespace'
+
+app.directive 'create', ->
   directive =
     controller  : 'createController'
     controllerAs: 'create'
@@ -8,7 +10,7 @@ angular.module('downespace').directive 'create', ->
     templateUrl : 'views/directives/create.html'
   return directive
 
-angular.module('downespace').controller 'createController', ($rootScope, Event, Upload) ->
+app.controller 'createController', ($location, $rootScope, Event, Upload) ->
 
   this.imageFile = null
 
@@ -34,6 +36,7 @@ angular.module('downespace').controller 'createController', ($rootScope, Event, 
   this.createEvent = =>
     Event.create(this.newEvent).then (createdEvent) ->
       resetEvent()
+      $location.url "/event/#{ createdEvent.id }"
       return
     return
 
