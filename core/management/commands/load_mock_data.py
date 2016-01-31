@@ -30,31 +30,31 @@ class Command(BaseCommand):
     csvfile = requests.get(url)
 
     text    = csvfile.text.encode('ISO-8859-1')
-    reader  = csv.reader(text.splitlines(), delimiter=',')
+    reader  = csv.reader(text.splitlines(True), delimiter=',')
     user_id = User.objects.first().id
 
     # ignore first row as it only contains column names
     reader.next()
 
     for row in reader:
-      if Event.objects.filter(name=row[0]).exists():
+      if Event.objects.filter(name=row[1]).exists():
         return
 
-      if row[8]:
-        response = requests.get(row[8])
+      if row[9]:
+        response = requests.get(row[9])
         uri = (
           "data:" + response.headers['Content-Type'] + ";" +
           "base64," + base64.b64encode(response.content))
 
       event = {
-        'name'       : row[0],
-        'description': row[1],
-        'start'      : self._format_datestring(row[2]),
-        'end'        : self._format_datestring(row[3]),
+        'name'       : row[1],
+        'description': row[2],
+        'start'      : self._format_datestring(row[3]),
+        'end'        : self._format_datestring(row[4]),
         'frequency'  : 1,
-        'location'   : row[5],
+        'location'   : row[6],
         'contact'    : user_id,
-        'url'        : row[6] or None,
+        'url'        : row[7] or None,
         'image'      : uri or None
       }
       events.append(event)

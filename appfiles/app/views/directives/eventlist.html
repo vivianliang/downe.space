@@ -6,48 +6,38 @@
         ng-click="eventList.gridView = false"
         class="btn btn-default btn-sm"
         ng-class="{ 'selected' : eventList.gridView === false }">
-        <span class="glyphicon glyphicon-th-list"></span>List
+        <span class="fa fa-th-list"></span> List
       </span>
       <span
         ng-click="eventList.gridView = true"
         class="btn btn-default btn-sm"
         ng-class="{ 'selected': eventList.gridView === true }">
-        <span class="glyphicon glyphicon-th"></span>Grid
+        <span class="fa fa-th"></span> Grid
       </span>
     </div>
   </div>
 
   <div class="row" ng-class="{'list-view': !eventList.gridView}">
     <div
-      class="item col-xs-4 col-lg-4"
+      class="item col-xs-4"
       ng-class="{ 'list-view-item': !eventList.gridView }"
       ng-repeat="event in eventList.events">
       <a ng-href="#/event/{{ event.id }}" class="thumbnail">
         <div class="thumbnail-image">
-          <img class="group list-view-image" ng-if="event.image" ng-src="{{ event.image }}">
-          <img class="group list-view-image" ng-if="!event.image" src="http://placehold.it/265x165/83abb9/fff">
+          <img class="group" ng-if="event.image" ng-src="{{ event.image }}">
+          <img class="group" ng-if="!event.image" src="http://placehold.it/265x165/83abb9/fff">
         </div>
         <div class="caption">
           <h4 class="group inner item-text">{{ event.name }}</h4>
-          <div class="group inner item-text">
+          <div ng-switch="eventList.gridView" class="group inner item-text">
             <i class="fa fa-calendar"></i>
-            {{ event.start }}
+            <span ng-switch-when="false">{{ event.start }} - {{ event.end }}</span>
+            <span ng-switch-when="true">{{ event.start }}</span>
           </div>
           <div class="group inner item-text">
             <i class="fa fa-map-marker fa-lg"></i>
             {{ event.location }}
           </div>
-          <div
-            ng-if="!eventList.gridView"
-            class="group inner item-text">
-            Start: {{ event.start }}
-          </div>
-          <div
-            ng-if="!eventList.gridView"
-            class="group inner item-text">
-            End: {{ event.end }}
-          </div>
-          <div class="row"></div>
         </div>
       </a>
     </div>
