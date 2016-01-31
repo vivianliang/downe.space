@@ -18,21 +18,28 @@
 
       <div class="event-detail-section section-left">
         <div><h4>{{ eventDetail.event.name }}</h4></div>
-        <div>
-          <i class="fa fa-calendar event-info"></i>
-          {{ eventDetail.event.start }} - {{ eventDetail.event.end }}
+        <div class="row event-info-item">
+          <i class="fa fa-calendar event-info-icon col-xs-1"></i>
+          <span class="col-xs-11">
+            {{ eventDetail.event.start }} - {{ eventDetail.event.end }}
+          </span>
         </div>
-        <div>
-          <i class="fa fa-map-marker fa-lg event-info"></i>
-          {{ eventDetail.event.location }}
+        <div class="row event-info-item">
+          <i class="fa fa-map-marker fa-lg event-info-icon col-xs-1"></i>
+          <span class="col-xs-11">
+            {{ eventDetail.event.location }}
+          </span>
         </div>
-        <div>
-          <i class="fa fa-envelope event-info"></i>
-          {{ eventDetail.event.contact.name }}
+        <div class="row event-info-item">
+          <i class="fa fa-envelope event-info-icon col-xs-1"></i>
+          <!-- TODO: replace with email field -->
+          <a class="col-xs-11" href="mailto:downe.space@gmail.com">Contact Organizer</a>
         </div>
-        <div>
-          <i class="fa fa-external-link event-info"></i>
-          <a ng-href="{{ eventDetail.event.url }}" target="_blank">{{ eventDetail.event.url }}</a>
+        <div class="row event-info-item">
+          <i class="fa fa-external-link event-info-icon col-xs-1"></i>
+          <a class="col-xs-11" ng-href="{{ eventDetail.event.url }}" target="_blank">
+            {{ eventDetail.event.url }}
+          </a>
         </div>
       </div>
 
@@ -57,7 +64,7 @@
           </div>
           <div class="col-xs-7 text-right" style="line-height: 48px;">
             <a ng-click="eventDetail.addToCalendar()">
-              <i class="fa fa-calendar-plus-o event-info"></i>
+              <i class="fa fa-calendar-plus-o event-info-icon"></i>
               <small>ADD EVENT TO MY CALENDAR</small>
             </a>
           </div>
@@ -70,7 +77,7 @@
         <div class="description">
           <small>DESCRIPTION</small>
         </div>
-        {{ eventDetail.event.description }}
+        <div ng-bind-html="eventDetail.event.description | newLines"></div>
       </div>
     </div>
   </div>

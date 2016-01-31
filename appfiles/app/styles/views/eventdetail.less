@@ -21,9 +21,16 @@
     color: @orange;
   }
 
-  .event-info.fa {
-    color: @orange;
-    width: 20px;
+  .event-info-icon {
+    &.fa {
+      color      : @orange;
+      padding-top:3px;
+    }
+  }
+
+  .event-info-item {
+    word-wrap: break-word;
+    padding: 1px 0;
   }
 
   .fa.facebook {
@@ -38,7 +45,8 @@
     color: @linkedin;
   }
 
-  .event-info.fa.fa-calendar-plus-o {
+  .event-info-icon.fa.fa-calendar-plus-o {
+    vertical-align: inherit;
     width: 15px;
   }
 
@@ -61,6 +69,6 @@
 
   img {
     // width of column is determined by bootstrap grid
-    max-width: 420px;
+    max-width: 435px;
   }
 }

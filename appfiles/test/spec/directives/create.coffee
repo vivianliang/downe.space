@@ -5,9 +5,10 @@ describe 'Directive: create', ->
   beforeEach ->
     module 'downespace'
 
-    inject ($rootScope, $controller, $q, $httpBackend, Event, Upload) ->
+    inject ($controller, $location, $rootScope, $q, $httpBackend, Event, Upload) ->
       this.$rootScope   = $rootScope.$new()
       this.$controller  = $controller
+      this.$location    = $location
       this.$httpBackend = $httpBackend
       this.Event        = Event
       this.Upload       = Upload
@@ -18,9 +19,11 @@ describe 'Directive: create', ->
       Event     : this.Event
       Upload    : this.Upload
 
-    this.$httpBackend.expectGET("/api/auth/").respond {}
-    spyOn(this.Event, 'create').and.returnValue this.$q.when this.controller.newEvent
+    spyOn(this.Event, 'create').and.returnValue this.$q.when {id: 2, name: 'name'}
     spyOn(this.Upload, 'base64DataUrl').and.returnValue this.$q.when 'data:image/png;base64,foo'
+    spyOn(this.$location, 'url').and.returnValue this.$q.when()
+
+    this.$httpBackend.expectGET("/api/auth/").respond {}
 
   afterEach ->
     this.$httpBackend.verifyNoOutstandingExpectation()
@@ -42,6 +45,7 @@ describe 'Directive: create', ->
     this.$httpBackend.flush()
     expect(this.controller.newEvent.name).toBe null
     expect(this.controller.newEvent.description).toBe null
+    expect(this.$location.url).toHaveBeenCalledWith '/event/2'
 
   it 'should convert image to base64', ->
     this.controller.imageFile =
