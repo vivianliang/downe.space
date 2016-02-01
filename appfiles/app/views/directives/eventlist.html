@@ -17,7 +17,9 @@
     </div>
   </div>
 
-  <div class="row" ng-class="{'list-view': !eventList.gridView}">
+  <div class="row col-xs-12 loading" ng-if="eventList.loading">loading...</div>
+
+  <div class="row" ng-class="{'list-view': !eventList.gridView}" ng-if="!eventList.loading">
     <div
       class="item col-xs-4"
       ng-class="{ 'list-view-item': !eventList.gridView }"
@@ -43,7 +45,7 @@
     </div>
   </div>
 
-  <a
+   <a
     class="pull-right push-right"
     ng-if="eventList.more"
     ng-click="eventList.getEvents()">More

@@ -15,16 +15,22 @@ angular.module('downespace').controller 'eventListController', (Event) ->
     this.nextPage = 1
     this.more     = true
     this.gridView = true
-    this.filters = {}
+    this.filters  = {}
     return
 
+  this.loading = this.nextPage == 0
   this.getEvents = =>
-    Event.getEvents(this.nextPage, this.filters).then (eventData) =>
-      this.events.push eventData.events...
-      this.more = eventData.more
-      if this.more
-        this.nextPage = eventData.page + 1
+    if this.loading
       return
+    # this.loading = this.nextPage == 0
+    Event.getEvents(this.nextPage, this.filters)
+      .then (eventData) =>
+        this.events.push eventData.events...
+        this.more = eventData.more
+        if this.more
+          this.nextPage = eventData.page + 1
+        return
+      .finally => this.loading = false
     return
 
   return
